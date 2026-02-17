@@ -5,7 +5,7 @@ const Newsletter = () => {
         <div style={{ backgroundColor: 'var(--color-primary-light)', }}>
             <section style={{
                 background: 'var(--gradient-card)',
-                padding: '80px ',
+                padding: '80px 24px',
                 borderRadius: 'var(--radius-lg)',
                 marginTop: '80px',
                 position: 'relative',
@@ -13,7 +13,7 @@ const Newsletter = () => {
                 border: '1px solid white',
                 boxShadow: 'var(--shadow-md)',
                 marginBottom: '-60px'
-            }} className="container animate-fade-up" >
+            }} className="container newsletter-section animate-fade-up" >
 
                 {/* Decorative */}
                 <div className="particle animate-float" style={{ top: -30, left: -30, fontSize: '6rem', opacity: 0.5 }}>🎀</div>
@@ -28,7 +28,7 @@ const Newsletter = () => {
                     </p>
 
                     <form className="newsletter-form" style={{ display: 'flex', gap: '12px', maxWidth: '480px', margin: '0 auto', flexDirection: 'column' }} onSubmit={(e) => e.preventDefault()}>
-                        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                        <div className="newsletter-form-inner" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
                             <input
                                 type="email"
                                 placeholder="Your email address..."
@@ -61,15 +61,32 @@ const Newsletter = () => {
 
             <style>{`
                 @media (max-width: 768px) {
-                    section[style*="padding: '80px '"] { padding: 40px 20px !important; margin-top: 40px !important; }
+                    .newsletter-section { 
+                        padding: 40px 20px !important; 
+                        margin-top: 40px !important;
+                        margin-bottom: -40px !important;
+                        border-radius: var(--radius-md) !important;
+                    }
                     .newsletter-title { font-size: 1.8rem !important; }
-                    .newsletter-subtitle { font-size: 1rem !important; }
+                    .newsletter-subtitle { font-size: 1rem !important; margin-bottom: 24px !important; }
                     .particle { display: none; }
                 }
                 @media (max-width: 480px) {
-                    .newsletter-form div { flex-direction: column !important; width: 100%; }
-                    .newsletter-form input { min-width: 100% !important; }
-                    .newsletter-form button { width: 100%; }
+                    .newsletter-section {
+                        padding: 30px 15px !important;
+                        margin-top: 30px !important;
+                    }
+                    .newsletter-form-inner { 
+                        flex-direction: column !important; 
+                        width: 100%; 
+                    }
+                    .newsletter-form input { 
+                        min-width: 100% !important; 
+                        padding: 12px 20px !important;
+                    }
+                    .newsletter-form button { 
+                        width: 100%; 
+                    }
                 }
             `}</style>
         </div>
