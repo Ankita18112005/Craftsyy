@@ -35,19 +35,19 @@ const ProductDetails = () => {
                 <ArrowLeft size={16} /> Back to Shop
             </Link>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
+            <div className="product-details-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
                 {/* Image */}
-                <div style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
+                <div className="product-image-container" style={{ borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)' }}>
                     <img src={product.image} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
 
                 {/* Info */}
-                <div>
+                <div className="product-info-container">
                     <span style={{ color: 'var(--color-primary)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
                         {product.category}
                     </span>
-                    <h1 style={{ fontSize: '2.5rem', margin: '10px 0' }}>{product.name}</h1>
-                    <p style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'var(--color-text)', marginBottom: '20px' }}>
+                    <h1 className="product-title" style={{ margin: '10px 0' }}>{product.name}</h1>
+                    <p className="product-price" style={{ fontWeight: 'bold', color: 'var(--color-text)', marginBottom: '20px' }}>
                         ${product.price.toFixed(2)}
                     </p>
 
@@ -57,7 +57,7 @@ const ProductDetails = () => {
                         Each piece is unique and crafted using high-quality materials.
                     </p>
 
-                    <div style={{ display: 'flex', gap: '15px', marginBottom: '30px' }}>
+                    <div className="product-actions" style={{ display: 'flex', gap: '15px', marginBottom: '30px' }}>
                         <Button variant="primary" onClick={handleAddToCart} style={{ padding: '15px 40px', fontSize: '1.1rem' }}>
                             Add to Cart <ShoppingBag size={18} style={{ marginLeft: 8 }} />
                         </Button>
@@ -80,6 +80,22 @@ const ProductDetails = () => {
                     </div>
                 </div>
             </div>
+
+            <style>{`
+                .product-title { font-size: 2.5rem; }
+                .product-price { font-size: 1.5rem; }
+                @media (max-width: 768px) {
+                    .product-details-grid { grid-template-columns: 1fr !important; gap: 30px !important; }
+                    .product-title { font-size: 2rem !important; }
+                    .product-price { font-size: 1.3rem !important; }
+                    .product-actions { flex-wrap: wrap; }
+                    .product-actions button:first-child { flex: 1; }
+                }
+                @media (max-width: 480px) {
+                    .product-title { font-size: 1.7rem !important; }
+                    .product-image-container { height: 300px; }
+                }
+            `}</style>
         </div>
     );
 };

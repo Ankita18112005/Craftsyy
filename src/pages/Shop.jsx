@@ -58,16 +58,17 @@ const Shop = () => {
 
             <div className="container section" style={{ position: 'relative', zIndex: 1, paddingTop: '40px' }}>
                 <div className="text-center" style={{ marginBottom: '50px' }}>
-                    <h1 style={{ fontSize: '3rem', marginBottom: '15px' }}>Shop Collections</h1>
-                    <p style={{ fontSize: '1.2rem', color: 'var(--color-text-light)' }}>
+                    <h1 className="shop-title" style={{ marginBottom: '15px' }}>Shop Collections</h1>
+                    <p className="shop-subtitle" style={{ fontSize: '1.2rem', color: 'var(--color-text-light)' }}>
                         Browse our handmade treasures tailored for you
                     </p>
                 </div>
 
                 {/* Filter Tabs */}
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginBottom: '40px' }}>
+                <div className="filter-tabs" style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginBottom: '40px' }}>
                     <button
                         onClick={() => handleCategoryChange('All')}
+                        className="filter-btn"
                         style={{
                             padding: '10px 20px',
                             borderRadius: 'var(--radius-full)',
@@ -84,6 +85,7 @@ const Shop = () => {
                         <button
                             key={cat.id}
                             onClick={() => handleCategoryChange(cat.name)}
+                            className="filter-btn"
                             style={{
                                 padding: '10px 20px',
                                 borderRadius: 'var(--radius-full)',
@@ -100,9 +102,9 @@ const Shop = () => {
                 </div>
 
                 {/* Product Grid */}
-                <div style={{
+                <div className="product-grid" style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
                     gap: '30px',
                     opacity: fadeIn ? 1 : 0,
                     transform: fadeIn ? 'translateY(0)' : 'translateY(15px)',
@@ -119,6 +121,21 @@ const Shop = () => {
                     </div>
                 )}
             </div>
+
+            <style>{`
+                .shop-title { font-size: 3rem; }
+                @media (max-width: 768px) {
+                    .shop-title { font-size: 2.2rem !important; }
+                    .shop-subtitle { font-size: 1rem !important; }
+                    .filter-tabs { gap: 10px !important; }
+                    .filter-btn { padding: 8px 16px !important; fontSize: 0.9rem !important; }
+                    .product-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important; gap: 20px !important; }
+                }
+                @media (max-width: 480px) {
+                    .product-grid { grid-template-columns: 1fr !important; }
+                    .shop-title { font-size: 1.8rem !important; }
+                }
+            `}</style>
         </div>
     );
 };

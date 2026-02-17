@@ -19,10 +19,10 @@ const Contact = () => {
                         </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'start' }}>
+                    <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'start' }}>
 
                         {/* Contact Info */}
-                        <div style={{ background: '#f6f4f4ff', padding: '40px', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)' }}>
+                        <div className="contact-info" style={{ background: '#f6f4f4ff', padding: '40px', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-sm)' }}>
                             <h3 style={{ marginBottom: '30px', fontSize: '1.5rem' }}>Contact Info</h3>
 
                             <div style={{ display: 'flex', gap: '15px', marginBottom: '25px', alignItems: 'center' }}>
@@ -57,7 +57,7 @@ const Contact = () => {
                         </div>
 
                         {/* Form */}
-                        <div>
+                        <div className="contact-form">
                             <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={(e) => { e.preventDefault(); alert('Message sent with love!'); }}>
                                 <div>
                                     <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>Your Name</label>
@@ -92,10 +92,15 @@ const Contact = () => {
                     </div>
 
                     <style>{`
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr !important; }
-            }
-            `}</style>
+                        @media (max-width: 960px) {
+                            .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+                        }
+                        @media (max-width: 480px) {
+                            .contact-info { padding: 25px !important; }
+                            h1 { font-size: 2.2rem !important; }
+                            p[style*="font-size: 1.2rem"] { font-size: 1rem !important; }
+                        }
+                    `}</style>
                 </div>
             </div>
         </div>

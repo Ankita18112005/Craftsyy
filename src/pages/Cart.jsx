@@ -36,20 +36,21 @@ const Cart = () => {
 
                 <h1 style={{ fontSize: '2.5rem', marginBottom: '40px' }}>Shopping Cart</h1>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '40px', alignItems: 'start' }}>
+                <div className="cart-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '40px', alignItems: 'start' }}>
                     {/* Cart Items */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="cart-items-container" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                         {cartItems.map(item => (
-                            <div key={item.id} style={{
+                            <div key={item.id} className="cart-item" style={{
                                 display: 'flex', gap: '20px', alignItems: 'center',
                                 background: 'rgba(255,255,255,0.9)', borderRadius: 'var(--radius-md)',
                                 padding: '20px', boxShadow: 'var(--shadow-sm)',
                                 border: '1px solid rgba(255,255,255,0.6)',
-                                transition: 'all 0.3s ease'
+                                transition: 'all 0.3s ease',
+                                position: 'relative'
                             }}>
                                 {/* Image */}
                                 <Link to={`/product/${item.id}`}>
-                                    <div style={{ width: '100px', height: '100px', borderRadius: 'var(--radius-md)', overflow: 'hidden', flexShrink: 0 }}>
+                                    <div className="cart-item-image" style={{ width: '100px', height: '100px', borderRadius: 'var(--radius-md)', overflow: 'hidden', flexShrink: 0 }}>
                                         {item.image ? (
                                             <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         ) : (
@@ -59,52 +60,56 @@ const Cart = () => {
                                 </Link>
 
                                 {/* Info */}
-                                <div style={{ flex: 1 }}>
+                                <div className="cart-item-info" style={{ flex: 1 }}>
                                     <h3 style={{ fontSize: '1.1rem', marginBottom: '5px', fontWeight: '600' }}>{item.name}</h3>
                                     <p style={{ color: 'var(--color-primary-dark)', fontWeight: '700', fontSize: '1.1rem' }}>${item.price.toFixed(2)}</p>
                                 </div>
 
-                                {/* Quantity Controls */}
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <button
-                                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                        style={{
-                                            width: '34px', height: '34px', borderRadius: '50%',
-                                            border: '2px solid var(--color-secondary)', background: 'white',
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            cursor: 'pointer', transition: 'all 0.2s ease'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-secondary)'}
-                                        onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
-                                    >
-                                        <Minus size={14} />
-                                    </button>
-                                    <span style={{ fontWeight: '700', fontSize: '1.1rem', minWidth: '24px', textAlign: 'center' }}>{item.quantity}</span>
-                                    <button
-                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                        style={{
-                                            width: '34px', height: '34px', borderRadius: '50%',
-                                            border: '2px solid var(--color-secondary)', background: 'white',
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            cursor: 'pointer', transition: 'all 0.2s ease'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-secondary)'}
-                                        onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
-                                    >
-                                        <Plus size={14} />
-                                    </button>
-                                </div>
+                                {/* Controls & Subtotal Group for mobile */}
+                                <div className="cart-item-actions" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                                    {/* Quantity Controls */}
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <button
+                                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                            style={{
+                                                width: '34px', height: '34px', borderRadius: '50%',
+                                                border: '2px solid var(--color-secondary)', background: 'white',
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                cursor: 'pointer', transition: 'all 0.2s ease'
+                                            }}
+                                            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-secondary)'}
+                                            onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
+                                        >
+                                            <Minus size={14} />
+                                        </button>
+                                        <span style={{ fontWeight: '700', fontSize: '1.1rem', minWidth: '24px', textAlign: 'center' }}>{item.quantity}</span>
+                                        <button
+                                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                            style={{
+                                                width: '34px', height: '34px', borderRadius: '50%',
+                                                border: '2px solid var(--color-secondary)', background: 'white',
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                cursor: 'pointer', transition: 'all 0.2s ease'
+                                            }}
+                                            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-secondary)'}
+                                            onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
+                                        >
+                                            <Plus size={14} />
+                                        </button>
+                                    </div>
 
-                                {/* Subtotal */}
-                                <div style={{ minWidth: '80px', textAlign: 'right' }}>
-                                    <p style={{ fontWeight: '700', fontSize: '1.15rem', color: 'var(--color-text)' }}>
-                                        ${(item.price * item.quantity).toFixed(2)}
-                                    </p>
+                                    {/* Subtotal */}
+                                    <div className="cart-item-subtotal" style={{ minWidth: '80px', textAlign: 'right' }}>
+                                        <p style={{ fontWeight: '700', fontSize: '1.15rem', color: 'var(--color-text)' }}>
+                                            ${(item.price * item.quantity).toFixed(2)}
+                                        </p>
+                                    </div>
                                 </div>
 
                                 {/* Remove */}
                                 <button
                                     onClick={() => removeFromCart(item.id)}
+                                    className="cart-item-remove"
                                     style={{
                                         background: 'transparent', border: 'none', cursor: 'pointer',
                                         color: 'var(--color-text-light)', transition: 'all 0.2s ease', padding: '8px'
@@ -119,7 +124,7 @@ const Cart = () => {
                     </div>
 
                     {/* Order Summary */}
-                    <div style={{
+                    <div className="cart-summary" style={{
                         background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)',
                         padding: '30px', boxShadow: 'var(--shadow-md)',
                         border: '2px dashed var(--color-secondary)', position: 'sticky', top: '100px'
@@ -160,10 +165,21 @@ const Cart = () => {
                 </div>
 
                 <style>{`
+                    @media (max-width: 960px) {
+                        .cart-grid { grid-template-columns: 1fr !important; }
+                        .cart-summary { position: static !important; margin-top: 20px; }
+                    }
                     @media (max-width: 768px) {
-                        div[style*="grid-template-columns: 1fr 350px"] {
-                            grid-template-columns: 1fr !important;
-                        }
+                        .cart-item { flex-wrap: wrap; gap: 15px !important; padding: 15px !important; }
+                        .cart-item-image { width: 80px !important; height: 80px !important; }
+                        .cart-item-info { min-width: 150px; }
+                        .cart-item-actions { width: 100%; justify-content: space-between; border-top: 1px solid #eee; pt-15px; padding-top: 15px !important; }
+                        .cart-item-remove { position: absolute; top: 10px; right: 10px; }
+                    }
+                    @media (max-width: 480px) {
+                        h1 { font-size: 2rem !important; }
+                        .cart-item-image { width: 60px !important; height: 60px !important; }
+                        .cart-item-info h3 { font-size: 1rem !important; }
                     }
                 `}</style>
             </div>

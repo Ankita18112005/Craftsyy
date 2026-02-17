@@ -24,7 +24,7 @@ const HeroSection = () => {
             <div className="particle animate-float delay-200" style={{ bottom: '20%', left: '10%', fontSize: '2rem', transform: 'rotate(-10deg)', opacity: 0.6 }}>🎀</div>
 
 
-            <div className="container" style={{
+            <div className="container responsive-grid" style={{
                 display: 'grid',
                 gridTemplateColumns: '1.1fr 0.9fr',
                 gap: '80px',
@@ -64,8 +64,7 @@ const HeroSection = () => {
                         Welcome to Handcrafttt
                     </div>
 
-                    <div style={{
-                        fontSize: '5rem',
+                    <div className="hero-title" style={{
                         lineHeight: '1.1',
                         marginBottom: '32px',
                         color: 'var(--color-text)',
@@ -95,7 +94,7 @@ const HeroSection = () => {
                         </div>
                     </div>
 
-                    <p style={{
+                    <p className="hero-description" style={{
                         fontSize: '1.4rem',
                         color: '#666',
                         marginBottom: '48px',
@@ -192,13 +191,21 @@ const HeroSection = () => {
             </div>
 
             <style>{`
+        .hero-title { font-size: 5rem; }
         @media (max-width: 960px) {
-          .container { grid-template-columns: 1fr !important; text-align: center; }
+          .container.responsive-grid { grid-template-columns: 1fr !important; text-align: center; gap: 40px !important; }
           .animate-fade-up { text-align: center !important; padding-right: 0 !important; }
-          .animate-fade-up > div { justify-content: center; }
-          h1 { fontSize: 3.5rem !important; }
+          .animate-fade-up > div { justify-content: center; margin-left: auto; margin-right: auto; }
+          .hero-title { font-size: 3.5rem !important; }
+          .hero-description { font-size: 1.2rem !important; margin-bottom: 30px !important; margin-left: auto; margin-right: auto; }
           .particle { display: none; }
           .sticker { position: relative !important; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; margin: 0 auto; transform: rotate(var(--rotation)) !important; }
+          div[style*="height: 500px"] { height: auto !important; gap: 40px; }
+        }
+        @media (max-width: 480px) {
+          .hero-title { font-size: 2.5rem !important; }
+          .sticker { width: 80% !important; height: auto !important; aspect-ratio: 1/1; }
+          .sticker img { height: 100% !important; }
         }
       `}</style>
         </section>

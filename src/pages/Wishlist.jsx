@@ -48,13 +48,13 @@ const Wishlist = () => {
                     My Wishlist <Heart size={28} color="var(--color-love)" fill="var(--color-love)" style={{ verticalAlign: 'middle' }} />
                 </h1>
 
-                <div style={{
+                <div className="wishlist-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
                     gap: '30px'
                 }}>
                     {wishlistItems.map(item => (
-                        <div key={item.id} style={{
+                        <div key={item.id} className="wishlist-item" style={{
                             background: 'rgba(255,255,255,0.9)',
                             borderRadius: 'var(--radius-md)',
                             overflow: 'hidden',
@@ -67,7 +67,7 @@ const Wishlist = () => {
                         >
                             {/* Image */}
                             <Link to={`/product/${item.id}`}>
-                                <div style={{ height: '220px', overflow: 'hidden' }}>
+                                <div className="wishlist-item-image" style={{ height: '220px', overflow: 'hidden' }}>
                                     {item.image ? (
                                         <img src={item.image} alt={item.name} style={{
                                             width: '100%', height: '100%', objectFit: 'cover',
@@ -87,7 +87,7 @@ const Wishlist = () => {
                             </Link>
 
                             {/* Details */}
-                            <div style={{ padding: '20px' }}>
+                            <div className="wishlist-item-details" style={{ padding: '20px' }}>
                                 <h3 style={{ fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600' }}>{item.name}</h3>
                                 <p style={{ fontWeight: '700', fontSize: '1.2rem', color: 'var(--color-primary-dark)', marginBottom: '15px' }}>
                                     ${item.price.toFixed(2)}
@@ -116,6 +116,24 @@ const Wishlist = () => {
                     ))}
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    h1 { font-size: 2rem !important; }
+                    .wishlist-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important; gap: 20px !important; }
+                    .wishlist-item-image { height: 180px !important; }
+                    .wishlist-item-details { padding: 15px !important; }
+                }
+                @media (max-width: 480px) {
+                    .wishlist-grid { grid-template-columns: 1fr 1fr !important; gap: 15px !important; }
+                    .wishlist-item-image { height: 150px !important; }
+                    .wishlist-item-details h3 { font-size: 0.9rem !important; margin-bottom: 5px !important; }
+                    .wishlist-item-details p { font-size: 1rem !important; margin-bottom: 10px !important; }
+                    .wishlist-item-details button { padding: 5px !important; font-size: 0.8rem !important; }
+                    .wishlist-item-details button svg { width: 12px !important; height: 12px !important; }
+                    div[style*="width: 42px"] { width: 32px !important; height: 32px !important; }
+                }
+            `}</style>
         </div>
     );
 };

@@ -22,12 +22,12 @@ const Newsletter = () => {
 
 
                 <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
-                    <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', color: 'var(--color-text)' }}>Join our Craft Circle</h2>
-                    <p style={{ marginBottom: '32px', fontSize: '1.1rem', color: 'var(--color-text-light)' }}>
+                    <h2 className="newsletter-title" style={{ fontSize: '2.5rem', marginBottom: '16px', color: 'var(--color-text)' }}>Join our Craft Circle</h2>
+                    <p className="newsletter-subtitle" style={{ marginBottom: '32px', fontSize: '1.1rem', color: 'var(--color-text-light)' }}>
                         Get updates on new handmade <span className="highlight">treasures</span>, DIY tips, and exclusive offers!
                     </p>
 
-                    <form style={{ display: 'flex', gap: '12px', maxWidth: '480px', margin: '0 auto', flexDirection: 'column' }} onSubmit={(e) => e.preventDefault()}>
+                    <form className="newsletter-form" style={{ display: 'flex', gap: '12px', maxWidth: '480px', margin: '0 auto', flexDirection: 'column' }} onSubmit={(e) => e.preventDefault()}>
                         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
                             <input
                                 type="email"
@@ -58,6 +58,20 @@ const Newsletter = () => {
                     </form>
                 </div>
             </section>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    section[style*="padding: '80px '"] { padding: 40px 20px !important; margin-top: 40px !important; }
+                    .newsletter-title { font-size: 1.8rem !important; }
+                    .newsletter-subtitle { font-size: 1rem !important; }
+                    .particle { display: none; }
+                }
+                @media (max-width: 480px) {
+                    .newsletter-form div { flex-direction: column !important; width: 100%; }
+                    .newsletter-form input { min-width: 100% !important; }
+                    .newsletter-form button { width: 100%; }
+                }
+            `}</style>
         </div>
     );
 };

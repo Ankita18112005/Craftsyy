@@ -105,12 +105,12 @@ const ProductCard = ({ product }) => {
             </div>
 
             {/* Details */}
-            <div style={{ padding: '24px' }}>
-                <h3 style={{ fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text)' }}>
+            <div className="product-card-details" style={{ padding: '24px' }}>
+                <h3 className="product-card-name" style={{ fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text)' }}>
                     <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>{name}</Link>
                 </h3>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--color-primary-dark)' }}>
+                    <span className="product-card-price" style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--color-primary-dark)' }}>
                         ${price.toFixed(2)}
                     </span>
                     <Button variant="primary" onClick={handleAddToCart} style={{ padding: '8px 16px', fontSize: '0.9rem' }}>
@@ -118,6 +118,15 @@ const ProductCard = ({ product }) => {
                     </Button>
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 480px) {
+                    .product-card-details { padding: 15px !important; }
+                    .product-card-name { font-size: 1rem !important; }
+                    .product-card-price { font-size: 1.1rem !important; }
+                    div[style*="height: 220px"] { height: 180px !important; }
+                }
+            `}</style>
         </div>
     );
 };

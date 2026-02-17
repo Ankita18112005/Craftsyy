@@ -93,7 +93,7 @@ const Navbar = () => {
                 boxShadow: 'var(--shadow-lg)', border: '1px solid white'
             }}>
                 {navLinks.map((link) => (
-                    <Link key={link.name} to={link.path} onClick={() => setIsOpen(false)} style={{ fontSize: '1.2rem' }}>
+                    <Link key={link.name} to={link.path} onClick={() => setIsOpen(false)} className="mobile-menu-link" style={{ fontSize: '1.2rem' }}>
                         {link.name}
                     </Link>
                 ))}
@@ -117,6 +117,21 @@ const Navbar = () => {
           .desktop-menu { display: none !important; }
           .mobile-toggle { display: block !important; }
           nav { top: 0 !important; margin: 0 !important; borderRadius: 0 !important; }
+          .mobile-menu-link { 
+            width: 100%; 
+            padding: 12px !important; 
+            text-align: center; 
+            border-bottom: 1px dashed #eee;
+            transition: all 0.2s ease;
+          }
+          .mobile-menu-link:hover {
+            background: var(--color-primary-light);
+            transform: rotate(1deg) scale(1.05);
+          }
+        }
+        @keyframes draw {
+          from { width: 0; }
+          to { width: 100%; }
         }
       `}</style>
         </nav>

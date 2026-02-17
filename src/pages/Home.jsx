@@ -71,7 +71,7 @@ const Home = () => {
                     <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                         <div className="text-center" style={{ marginBottom: '70px', position: 'relative' }}>
                             {/* Tiny Handwritten Note - White/Cream */}
-                            <div style={{
+                            <div className="category-note" style={{
                                 position: 'absolute',
                                 top: '-35px',
                                 left: '50%',
@@ -84,7 +84,7 @@ const Home = () => {
                                 Pick what you love
                             </div>
 
-                            <h2 style={{ fontSize: '3.5rem', marginBottom: '10px', position: 'relative', display: 'inline-block', color: 'var(--color-primary)', textShadow: '0 2px 6px rgba(255,255,255,0.4)' }}>
+                            <h2 className="category-title" style={{ marginBottom: '10px', position: 'relative', display: 'inline-block', color: 'var(--color-primary)', textShadow: '0 2px 6px rgba(255,255,255,0.4)' }}>
                                 Shop by{' '}
                                 <span style={{ position: 'relative', display: 'inline-block' }}>
                                     <span style={{ position: 'relative', zIndex: 1 }}>Category</span>
@@ -105,10 +105,10 @@ const Home = () => {
                                 </span>{' '}
                                 🎀
                             </h2>
-                            <p style={{ color: 'var(--color-primary)', marginTop: '15px', fontSize: '1.2rem', fontWeight: '500', opacity: 0.85 }}>Find the perfect handmade gift</p>
+                            <p className="category-subtitle" style={{ color: 'var(--color-primary)', marginTop: '15px', fontSize: '1.2rem', fontWeight: '500', opacity: 0.85 }}>Find the perfect handmade gift</p>
                         </div>
 
-                        <div style={{
+                        <div className="category-grid" style={{
                             display: 'grid',
                             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
                             gap: '30px',
@@ -148,7 +148,7 @@ const Home = () => {
             <div style={{ backgroundColor: 'var(--color-primary-light)' }}>
                 <section className="section container" style={{ background: 'var(--color-primary-light)', borderRadius: 'var(--radius-lg)' }}>
                     <div className="text-center" style={{ marginBottom: '40px' }}>
-                        <h2 style={{ fontSize: '2.5rem', marginBottom: '5px' }}>New Arrivals</h2>
+                        <h2 className="section-title" style={{ fontSize: '2.5rem', marginBottom: '5px' }}>New Arrivals</h2>
                         <p style={{ color: 'var(--color-text-light)' }}>Fresh from the craft table</p>
                     </div>
 
@@ -182,6 +182,25 @@ const Home = () => {
 
                 <Newsletter />
             </div>
+
+            <style>{`
+                .category-title { font-size: 3.5rem; }
+                @media (max-width: 768px) {
+                    div[style*="padding: 100px 0"] { padding: 60px 0 !important; }
+                    .category-title { font-size: 2.2rem !important; }
+                    .category-note { font-size: 1.4rem !important; top: -25px !important; }
+                    .category-subtitle { font-size: 1rem !important; padding: 0 20px; }
+                    .category-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; gap: 20px !important; padding: 10px !important; }
+                    .section-title { font-size: 2rem !important; }
+                    div[style*="width: 100px"] { width: 40px !important; }
+                }
+                @media (max-width: 480px) {
+                    .category-title { font-size: 1.8rem !important; }
+                    .category-grid { grid-template-columns: 1fr 1fr !important; }
+                    .animate-marquee { gap: 20px !important; }
+                    div[key*="id"] { min-width: 240px !important; }
+                }
+            `}</style>
         </div>
     );
 };
