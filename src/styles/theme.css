@@ -1,0 +1,53 @@
+:root {
+  /* Bold & Festive Palette - Handcraft Marketplace Vibe */
+  --color-primary: #ef4444;
+  /* Radiant Red */
+  --color-primary-dark: #dc2626;
+  --color-primary-light: #fee2e2;
+  /* Light Red for backgrounds */
+  --color-secondary: #4ECDC4;
+  /* Turquoise Blue */
+  --color-accent: #FFE66D;
+  /* Sunshine Yellow */
+  --color-tertiary: #1A535C;
+  /* Teal Green */
+  --color-warm: #FF9F1C;
+  /* Warm Orange */
+
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #2D3436;
+  /* Dark Charcoal */
+  --color-text-light: #2D3436;
+  /* Darker purely for contrast */
+  --color-love: #FF6B6B;
+
+  /* Gradients - Sharp & Distinct */
+  --gradient-main: linear-gradient(135deg, #FF6B6B 0%, #FF9F1C 100%);
+  /* Sunset/Mango */
+  --gradient-hero: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+  /* Clean overlay for text */
+  --gradient-card: linear-gradient(to bottom right, #ffffff, #f0fdfc);
+
+  /* Removed heavy overlay gradient to show background image */
+  --gradient-overlay: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4));
+
+  /* Shadows - Crisp */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 6px 12px rgba(26, 83, 92, 0.15);
+  --shadow-lg: 0 10px 25px rgba(26, 83, 92, 0.2);
+  --shadow-glow: 0 0 15px rgba(255, 107, 107, 0.5);
+  --shadow-text: 2px 2px 0px rgba(255, 255, 255, 0.8);
+  /* Text pop */
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-heading: 'Fredoka', cursive, sans-serif;
+  --font-body: 'Quicksand', sans-serif;
+}
