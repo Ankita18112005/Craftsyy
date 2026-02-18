@@ -41,7 +41,7 @@ const SplitText = ({
         <span
             ref={ref}
             className={className}
-            style={{ display: 'inline-block', textAlign, whiteSpace: 'nowrap' }}
+            style={{ display: 'inline-block', textAlign, whiteSpace: 'normal', overflowWrap: 'break-word' }}
         >
             {letters.map((letter, index) => (
                 <span

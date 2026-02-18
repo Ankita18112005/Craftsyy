@@ -5,10 +5,12 @@ const Contact = () => {
     return (
 
         <div style={{
-            minHeight: '80vh',
+            flex: '1',
             backgroundImage: 'radial-gradient(#fee2e2 2.5px, transparent 2.5px)',
             backgroundSize: '36px 36px',
-            backgroundColor: 'white'
+            backgroundColor: 'white',
+            display: 'flex',
+            flexDirection: 'column'
         }}>
             <div style={{ backgroundColor: 'var(--color-primary-light)' }}>
                 <div className="container section">

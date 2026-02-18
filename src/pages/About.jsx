@@ -1,5 +1,3 @@
-import { Heart } from 'lucide-react';
-
 const About = () => {
     return (
         <div className="section" style={{
@@ -7,7 +5,7 @@ const About = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
-            minHeight: '80vh',
+            flex: '1',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

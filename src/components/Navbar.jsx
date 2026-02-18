@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
-import { ShoppingBag, Heart, Menu, X, Search } from 'lucide-react';
+import { ShoppingBag, Heart, Menu, X, Search, User } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
+import { useAuth } from '../context/AuthContext';
 import '../styles/global.css';
 
 const Navbar = () => {
@@ -12,6 +13,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { getCartCount } = useCart();
     const { getWishlistCount } = useWishlist();
+    const { user } = useAuth();
     const cartCount = getCartCount();
     const wishCount = getWishlistCount();
 
@@ -32,22 +34,32 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="" style={{
-            padding: '15px 0',
+        <nav style={{
+            padding: '16px 0',
             position: 'sticky',
-            top: 20,
-            margin: '0 20px',
-            borderRadius: 'var(--radius-lg)',
+            top: 0,
+            width: '100%',
             zIndex: 1000,
             transition: 'all 0.3s ease',
-            background: 'var(--color-primary-light)',
-            boxShadow: 'var(--shadow-sm)'
+            background: 'rgba(255, 255, 255, 0.85)',
+            backdropFilter: 'blur(12px)',
+            borderBottom: '1px solid rgba(0,0,0,0.05)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.03)'
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {/* Logo */}
-                <Link to="/" style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)', color: 'var(--color-text)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ color: 'var(--color-primary)', fontSize: '2rem' }}></span>
-                    Handcrafttt
+                <Link to="/" style={{
+                    fontSize: '1.8rem',
+                    fontFamily: 'var(--font-heading)',
+                    color: 'var(--color-text)',
+                    fontWeight: '800',
+                    letterSpacing: '-0.5px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                }}>
+                    <span style={{ color: 'var(--color-primary)', fontSize: '2rem' }}>✂️</span>
+                    CRAFTSYYY
                 </Link>
 
                 {/* Desktop Menu */}
@@ -56,15 +68,17 @@ const Navbar = () => {
                         <NavLink
                             key={link.name}
                             to={link.path}
-                            className={({ isActive }) => isActive ? 'nav-active' : ''}
-                            style={{ fontWeight: '500', position: 'relative', padding: '5px 0' }}
+                            className={({ isActive }) => `nav-link ${isActive ? 'nav-active' : ''}`}
                         >
                             {link.name}
                         </NavLink>
                     ))}
+                </div>
 
-                    {/* Search Bar */}
-                    <form onSubmit={handleSearch} style={{ position: 'relative', marginLeft: '10px' }}>
+                {/* Icons */}
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                    {/* Search Bar (Desktop) */}
+                    <form className="desktop-search" onSubmit={handleSearch} style={{ position: 'relative' }}>
                         <input
                             type="text"
                             placeholder="Search crafts..."
@@ -92,10 +106,7 @@ const Navbar = () => {
                             }}
                         />
                     </form>
-                </div>
 
-                {/* Icons */}
-                <div style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
                     <Link to="/wishlist" className="icon-hover" style={{ color: 'var(--color-love)', position: 'relative' }}>
                         <Heart size={24} fill={wishCount > 0 ? 'var(--color-love)' : 'none'} style={{ transition: 'all 0.3s ease' }} />
                         {wishCount > 0 && (
@@ -116,6 +127,23 @@ const Navbar = () => {
                                 borderRadius: '50%', width: '20px', height: '20px',
                                 fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center'
                             }}>{cartCount}</span>
+                        )}
+                    </Link>
+
+                    {/* Divider */}
+                    <div style={{ width: '1px', height: '24px', background: '#e0e0e0' }}></div>
+
+                    {/* Profile Icon - Last item */}
+                    <Link to={user ? "/profile" : "/login"} className="icon-hover" style={{ color: 'var(--color-text)', position: 'relative' }}>
+                        {user ? (
+                            <div style={{
+                                width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden',
+                                border: '2px solid var(--color-primary)', padding: '2px'
+                            }}>
+                                <img src={user.avatar} alt="Me" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                            </div>
+                        ) : (
+                            <User size={24} />
                         )}
                     </Link>
 
@@ -168,47 +196,80 @@ const Navbar = () => {
             </div>
 
             <style>{`
-        .icon-hover:hover { transform: scale(1.1) rotate(5deg); }
-        .nav-active { color: var(--color-primary) !important; font-weight: 700 !important; }
+        /* Base Link Styling */
+        .nav-link {
+            color: var(--color-text-light);
+            padding: 8px 18px;
+            border-radius: 99px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        /* Hover Effect */
+        .nav-link:hover {
+            color: var(--color-primary);
+            background: rgba(254, 226, 226, 0.5); /* lighter primary-light */
+            transform: translateY(-1px);
+        }
+
+        /* Active State (Pill) */
+        .nav-active {
+            background: var(--color-primary) !important;
+            color: white !important;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            transform: scale(1.05);
+        }
+
+        /* Search Input */
+        .search-input {
+            background-color: #f3f4f6 !important;
+            border: 1px solid transparent !important;
+            font-weight: 500;
+        }
         .search-input:focus {
-            width: 220px !important;
+            background-color: white !important;
+            width: 260px !important;
             border-color: var(--color-primary) !important;
-            box-shadow: 0 0 0 3px var(--color-primary-light);
+            box-shadow: 0 0 0 4px var(--color-primary-light);
             outline: none;
         }
-        .nav-active::after {
-          content: '';
-          position: absolute;
-          bottom: -5px;
-          left: 0;
-          width: 100%;
-          height: 3px;
-          background: var(--color-primary);
-          border-radius: 2px;
-          animation: draw 0.3s ease forwards;
+
+        /* Icons */
+        .icon-hover {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+        .icon-hover:hover {
+            background: var(--color-primary-light);
+            transform: rotate(10deg) scale(1.1);
+            color: var(--color-primary) !important;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
+          .desktop-search { display: none !important; }
           .mobile-toggle { display: block !important; }
-          nav { top: 0 !important; margin: 0 !important; border-radius: 0 !important; padding: 12px 0 !important; }
+          
           .mobile-menu-link { 
             width: 100%; 
-            padding: 12px !important; 
+            padding: 16px !important; 
             text-align: center; 
-            border-bottom: 1px dashed #eee;
+            border-radius: 12px;
+            font-weight: 600;
             transition: all 0.2s ease;
           }
           .mobile-menu-link:hover {
             background: var(--color-primary-light);
-            transform: rotate(1deg) scale(1.05);
+            color: var(--color-primary);
+            transform: scale(1.02);
           }
-        }
-        @media (max-width: 480px) {
-          nav { padding: 10px 0 !important; }
-        }
-        @keyframes draw {
-          from { width: 0; }
-          to { width: 100%; }
         }
       `}</style>
         </nav>

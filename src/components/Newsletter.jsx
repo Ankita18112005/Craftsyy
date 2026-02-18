@@ -12,7 +12,8 @@ const Newsletter = () => {
                 overflow: 'hidden',
                 border: '1px solid white',
                 boxShadow: 'var(--shadow-md)',
-                marginBottom: '-60px'
+                marginBottom: '-40px',
+                zIndex: 10
             }} className="container newsletter-section animate-fade-up" >
 
                 {/* Decorative */}

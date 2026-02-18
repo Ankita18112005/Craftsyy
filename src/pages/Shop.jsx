@@ -55,7 +55,7 @@ const Shop = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
-            minHeight: '100vh',
+            flex: '1',
             position: 'relative'
         }}>
 

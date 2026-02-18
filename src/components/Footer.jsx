@@ -5,12 +5,12 @@ const Footer = () => {
         <footer className="footer" style={{
             background: 'var(--color-primary-light)',
             marginTop: '0',
-            padding: '80px 0 40px',
+            padding: '60px 0 40px',
             textAlign: 'center',
             borderTop: '1px solid rgba(239, 68, 68, 0.1)'
         }}>
             <div className="container">
-                <h2 className="footer-logo" style={{ fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'var(--color-primary)' }}>Handcrafttt</h2>
+                <h2 className="footer-logo" style={{ fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'var(--color-primary)' }}>CRAFTSYYY</h2>
                 <p className="footer-tagline" style={{ marginBottom: '20px', color: 'var(--color-text-light)', padding: '0 20px' }}>
                     Handmade with <Heart size={16} fill="var(--color-primary)" color="var(--color-primary)" style={{ verticalAlign: 'middle' }} /> for you.
                 </p>
@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-copyright" style={{ fontSize: '0.9rem', color: '#999', marginTop: '20px' }}>
-                    &copy; {new Date().getFullYear()} Handcrafttt. All rights reserved.
+                    &copy; {new Date().getFullYear()} CRAFTSYYY. All rights reserved.
                 </div>
             </div>
 

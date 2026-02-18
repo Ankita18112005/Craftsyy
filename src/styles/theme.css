@@ -18,8 +18,8 @@
   --color-surface: #ffffff;
   --color-text: #2D3436;
   /* Dark Charcoal */
-  --color-text-light: #2D3436;
-  /* Darker purely for contrast */
+  --color-text-light: #636e72;
+  /* Lighter for secondary text */
   --color-love: #FF6B6B;
 
   /* Gradients - Sharp & Distinct */
@@ -36,6 +36,8 @@
   --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 6px 12px rgba(26, 83, 92, 0.15);
   --shadow-lg: 0 10px 25px rgba(26, 83, 92, 0.2);
+  --shadow-hover: 0 12px 28px rgba(26, 83, 92, 0.22);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
   --shadow-glow: 0 0 15px rgba(255, 107, 107, 0.5);
   --shadow-text: 2px 2px 0px rgba(255, 255, 255, 0.8);
   /* Text pop */

@@ -37,9 +37,9 @@ const Wishlist = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
-            minHeight: '100vh'
+            flex: '1'
         }}>
-            <div className="container section" style={{ paddingLeft: '24px', paddingRight: '24px' }}>
+            <div className="container section">
                 <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', marginBottom: '30px', color: 'var(--color-text-light)' }}>
                     <ArrowLeft size={16} /> Back to Shop
                 </Link>
@@ -182,7 +182,7 @@ const Wishlist = () => {
                     .wishlist-item-details h3 { font-size: 0.85rem; }
                     .wishlist-item-price { font-size: 0.9rem; margin-bottom: 8px; }
                     .wishlist-remove-btn { width: 30px; height: 30px; }
-                    Button { font-size: 0.75rem !important; padding: 6px !important; }
+                    .wishlist-item-actions button { font-size: 0.75rem !important; padding: 6px !important; }
                 }
 
                 /* Ensure desktop/tablet still look good if screen is wide */

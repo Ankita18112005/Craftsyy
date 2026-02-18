@@ -1,11 +1,12 @@
 const Button = ({ children, variant = 'primary', onClick, style, className }) => {
     const baseStyle = {
-        padding: '12px 24px',
-        borderRadius: '12px', /* Slightly rounded for scrapbook feel */
+        padding: '12px 28px',
+        borderRadius: '99px',
         fontSize: '1rem',
         fontWeight: '600',
+        letterSpacing: '0.5px',
         cursor: 'pointer',
-        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', /* Bouncy transition */
+        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -37,7 +38,7 @@ const Button = ({ children, variant = 'primary', onClick, style, className }) =>
     return (
         <button
             onClick={onClick}
-            className={`btn-${variant} ${className}`}
+            className={`btn-${variant}${className ? ` ${className}` : ''}`}
             style={{ ...baseStyle, ...variants[variant], ...style }}
             onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';

@@ -27,7 +27,7 @@ const Cart = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundAttachment: 'fixed',
-            minHeight: '100vh'
+            flex: '1'
         }}>
             <div className="container section">
                 <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', marginBottom: '30px', color: 'var(--color-text-light)' }}>
@@ -124,10 +124,11 @@ const Cart = () => {
                     </div>
 
                     {/* Order Summary */}
-                    <div className="cart-summary" style={{
-                        background: 'rgba(255,255,255,0.95)', borderRadius: 'var(--radius-lg)',
-                        padding: '30px', boxShadow: 'var(--shadow-md)',
-                        border: '2px dashed var(--color-secondary)', position: 'sticky', top: '100px'
+                    <div className="cart-summary glass" style={{
+                        borderRadius: 'var(--radius-lg)',
+                        padding: '30px',
+                        position: 'sticky',
+                        top: '100px'
                     }}>
                         <h3 style={{ fontSize: '1.3rem', marginBottom: '25px' }}>Order Summary</h3>
 

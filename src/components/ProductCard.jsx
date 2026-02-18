@@ -5,7 +5,7 @@ import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
 import { useToast } from '../hooks/useToast';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, style }) => {
     const { id, name, price, image, isNew } = product;
     const { addToCart } = useCart();
     const { toggleWishlist, isInWishlist } = useWishlist();
@@ -33,8 +33,7 @@ const ProductCard = ({ product }) => {
             overflow: 'hidden',
             position: 'relative',
             transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            background: 'rgba(255,255,255,0.95)',
-            border: '1px solid rgba(255,255,255,0.8)',
+            ...style
         }}
             onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
@@ -80,7 +79,7 @@ const ProductCard = ({ product }) => {
             </button>
 
             {/* Image */}
-            <div className="product-card-image" style={{ height: '140px', overflow: 'hidden' }}>
+            <div className="product-card-image" style={{ aspectRatio: '4/3', width: '100%', overflow: 'hidden' }}>
                 {image ? (
                     <img
                         src={image}

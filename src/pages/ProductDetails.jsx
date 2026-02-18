@@ -30,7 +30,7 @@ const ProductDetails = () => {
     };
 
     return (
-        <div className="container section">
+        <div className="container section" style={{ flex: '1' }}>
             <Link to="/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', marginBottom: '30px', color: 'var(--color-text-light)' }}>
                 <ArrowLeft size={16} /> Back to Shop
             </Link>
@@ -42,7 +42,7 @@ const ProductDetails = () => {
                 </div>
 
                 {/* Info */}
-                <div className="product-info-container">
+                <div className="product-info-container glass" style={{ padding: '30px', borderRadius: 'var(--radius-lg)' }}>
                     <span style={{ color: 'var(--color-primary)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
                         {product.category}
                     </span>
@@ -70,7 +70,7 @@ const ProductDetails = () => {
                         </Button>
                     </div>
 
-                    <div style={{ background: '#fff', padding: '20px', borderRadius: 'var(--radius-md)', border: '1px dashed var(--color-secondary)' }}>
+                    <div className="glass" style={{ padding: '20px', borderRadius: 'var(--radius-md)', marginTop: '30px' }}>
                         <h4 style={{ marginBottom: '10px' }}>Why you&apos;ll love it:</h4>
                         <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
                             <li style={{ marginBottom: '5px' }}>100% Unique Design</li>

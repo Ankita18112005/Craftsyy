@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
 import CategoryCard from '../components/CategoryCard';
 import ProductCard from '../components/ProductCard';
@@ -9,7 +10,7 @@ const Home = () => {
     const featuredProducts = products.slice(0, 4);
 
     return (
-        <div style={{ backgroundColor: "var(--color-primary-light)" }}>
+        <div style={{ backgroundColor: "var(--color-primary-light)", flex: '1' }}>
             <div className="home-page">
                 <HeroSection />
 
@@ -127,25 +128,20 @@ const Home = () => {
                         <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '100px', background: 'linear-gradient(to left, #fff0f3, transparent)', zIndex: 2 }}></div>
 
                         <div className="animate-marquee" style={{ display: 'flex', gap: '40px', padding: '20px 0' }}>
-                            {/* Original Set */}
-                            {featuredProducts.map(product => (
-                                <div key={product.id} style={{ minWidth: '280px' }}>
-                                    <ProductCard product={product} />
-                                </div>
-                            ))}
-                            {/* Duplicate Set for Infinite Loop */}
-                            {featuredProducts.map(product => (
-                                <div key={`${product.id}-dup`} style={{ minWidth: '280px' }}>
-                                    <ProductCard product={product} />
-                                </div>
+                            {[...Array(4)].map((_, setIndex) => (
+                                featuredProducts.map(product => (
+                                    <div key={`${product.id}-${setIndex}`} style={{ flexShrink: 0 }}>
+                                        <ProductCard product={product} style={{ width: '260px' }} />
+                                    </div>
+                                ))
                             ))}
                         </div>
                     </div>
 
                     <div className="text-center" style={{ marginTop: '40px' }}>
-                        <a href="/shop" style={{ textDecoration: 'underline', color: 'var(--color-primary)', fontWeight: 'bold' }}>
+                        <Link to="/shop" style={{ textDecoration: 'underline', color: 'var(--color-primary)', fontWeight: 'bold' }}>
                             View All Products &rarr;
-                        </a>
+                        </Link>
                     </div>
                 </section>
 
