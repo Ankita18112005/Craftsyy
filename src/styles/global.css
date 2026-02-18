@@ -59,7 +59,8 @@ button {
 }
 
 .section {
-    padding: 40px 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
     position: relative;
 }
 
@@ -148,4 +149,33 @@ button {
     z-index: 1;
     display: inline-block;
     color: var(--color-primary);
+}
+
+/* Mobile Responsive Base */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .section {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .section {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 0 16px;
+    }
 }

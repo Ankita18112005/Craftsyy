@@ -10,7 +10,7 @@ const Footer = () => {
             borderTop: '1px solid rgba(239, 68, 68, 0.1)'
         }}>
             <div className="container">
-                <h2 className="footer-logo" style={{ fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'var(--color-primary)' }}>Handcrafttt 🎀</h2>
+                <h2 className="footer-logo" style={{ fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'var(--color-primary)' }}>Handcrafttt</h2>
                 <p className="footer-tagline" style={{ marginBottom: '20px', color: 'var(--color-text-light)', padding: '0 20px' }}>
                     Handmade with <Heart size={16} fill="var(--color-primary)" color="var(--color-primary)" style={{ verticalAlign: 'middle' }} /> for you.
                 </p>
@@ -34,7 +34,7 @@ const Footer = () => {
                     .footer-socials { gap: 16px !important; }
                 }
                 @media (max-width: 480px) {
-                    .footer { padding: 50px 0 25px !important; }
+                    .footer { padding: 50px 20px 25px !important; }
                     .footer-logo { font-size: 1.5rem !important; }
                     .footer-copyright { font-size: 0.8rem !important; }
                     .social-icon svg { width: 20px; height: 20px; }

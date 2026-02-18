@@ -35,7 +35,7 @@ const CategoryCard = ({ name, icon, color = 'white', rotate = '0deg', image, to 
             >
                 {image ? (
                     <div style={{ position: 'relative' }}>
-                        <img src={image} alt={name} style={{
+                        <img src={image} alt={name} className="category-card-img" style={{
                             width: '100%',
                             height: '200px',
                             objectFit: 'cover',
@@ -74,6 +74,17 @@ const CategoryCard = ({ name, icon, color = 'white', rotate = '0deg', image, to 
                     </span>
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .category-card-img { height: 160px !important; }
+                    .category-card h3 { font-size: 0.95rem !important; }
+                }
+                @media (max-width: 480px) {
+                    .category-card-img { height: 130px !important; }
+                    .category-card h3 { font-size: 0.85rem !important; }
+                }
+            `}</style>
         </Link>
     );
 };

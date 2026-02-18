@@ -28,15 +28,16 @@ const ProductCard = ({ product }) => {
 
     return (
         <div className="product-card glass" style={{
+            width: '175px',
             borderRadius: 'var(--radius-md)',
             overflow: 'hidden',
             position: 'relative',
             transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-            background: 'rgba(255,255,255,0.8)',
-            border: '1px solid rgba(255,255,255,0.6)',
+            background: 'rgba(255,255,255,0.95)',
+            border: '1px solid rgba(255,255,255,0.8)',
         }}
             onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-10px)';
+                e.currentTarget.style.transform = 'translateY(-8px)';
                 e.currentTarget.style.boxShadow = 'var(--shadow-hover)';
             }}
             onMouseLeave={(e) => {
@@ -47,9 +48,9 @@ const ProductCard = ({ product }) => {
             {/* Badge */}
             {isNew && (
                 <span className="animate-pulse-glow" style={{
-                    position: 'absolute', top: 12, left: 12,
-                    background: 'var(--color-accent)', padding: '6px 12px',
-                    borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold',
+                    position: 'absolute', top: 10, left: 10,
+                    background: 'var(--color-accent)', padding: '4px 10px',
+                    borderRadius: '20px', fontSize: '0.65rem', fontWeight: 'bold',
                     color: '#5a7c5a', zIndex: 1, boxShadow: 'var(--shadow-sm)'
                 }}>
                     New
@@ -60,9 +61,9 @@ const ProductCard = ({ product }) => {
             <button
                 onClick={handleToggleWishlist}
                 style={{
-                    position: 'absolute', top: 12, right: 12,
+                    position: 'absolute', top: 10, right: 10,
                     background: 'rgba(255,255,255,0.9)', borderRadius: '50%',
-                    width: '36px', height: '36px', display: 'flex',
+                    width: '32px', height: '32px', display: 'flex',
                     alignItems: 'center', justifyContent: 'center',
                     zIndex: 1, boxShadow: 'var(--shadow-sm)',
                     transition: 'transform 0.2s ease', border: 'none', cursor: 'pointer'
@@ -71,7 +72,7 @@ const ProductCard = ({ product }) => {
                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
             >
                 <Heart
-                    size={18}
+                    size={16}
                     color="var(--color-love)"
                     fill={wishlisted ? 'var(--color-love)' : 'none'}
                     style={{ transition: 'all 0.3s ease' }}
@@ -79,7 +80,7 @@ const ProductCard = ({ product }) => {
             </button>
 
             {/* Image */}
-            <div style={{ height: '220px', overflow: 'hidden' }}>
+            <div className="product-card-image" style={{ height: '140px', overflow: 'hidden' }}>
                 {image ? (
                     <img
                         src={image}
@@ -96,7 +97,7 @@ const ProductCard = ({ product }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: '3.5rem',
+                        fontSize: '2.5rem',
                         opacity: 0.7
                     }}>
 
@@ -105,26 +106,35 @@ const ProductCard = ({ product }) => {
             </div>
 
             {/* Details */}
-            <div className="product-card-details" style={{ padding: '24px' }}>
-                <h3 className="product-card-name" style={{ fontSize: '1.1rem', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text)' }}>
-                    <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}>{name}</Link>
+            <div className="product-card-details" style={{ padding: '12px' }}>
+                <h3 className="product-card-name" style={{
+                    fontSize: '0.95rem',
+                    marginBottom: '4px',
+                    fontWeight: '600',
+                    color: 'var(--color-text)',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                }}>
+                    <Link to={`/product/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>{name}</Link>
                 </h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
-                    <span className="product-card-price" style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--color-primary-dark)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', gap: '8px' }}>
+                    <span className="product-card-price" style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--color-primary-dark)' }}>
                         ${price.toFixed(2)}
                     </span>
-                    <Button variant="primary" onClick={handleAddToCart} style={{ padding: '8px 16px', fontSize: '0.9rem' }}>
-                        Add <ShoppingBag size={14} style={{ marginLeft: 5 }} />
+                    <Button variant="primary" onClick={handleAddToCart} style={{ padding: '6px 10px', fontSize: '0.75rem' }}>
+                        Add <ShoppingBag size={12} style={{ marginLeft: 3 }} />
                     </Button>
                 </div>
             </div>
 
             <style>{`
-                @media (max-width: 480px) {
-                    .product-card-details { padding: 15px !important; }
-                    .product-card-name { font-size: 1rem !important; }
-                    .product-card-price { font-size: 1.1rem !important; }
-                    div[style*="height: 220px"] { height: 180px !important; }
+                @media (max-width: 400px) {
+                    .product-card { width: 100% !important; }
+                    .product-card-image { height: 120px !important; }
+                    .product-card-details { padding: 8px !important; }
+                    .product-card-name { font-size: 0.85rem !important; }
+                    .product-card-price { font-size: 0.9rem !important; }
                 }
             `}</style>
         </div>

@@ -92,8 +92,13 @@ const ProductDetails = () => {
                     .product-actions button:first-child { flex: 1; }
                 }
                 @media (max-width: 480px) {
-                    .product-title { font-size: 1.7rem !important; }
-                    .product-image-container { height: 300px; }
+                    .product-title { font-size: 1.5rem !important; }
+                    .product-price { font-size: 1.2rem !important; }
+                    .product-image-container { height: 280px; }
+                    .product-image-container img { height: 100% !important; }
+                    .product-actions { gap: 10px !important; }
+                    .product-actions button:first-child { padding: 12px 20px !important; font-size: 1rem !important; }
+                    .product-info-container > div[style*="padding: 20px"] { padding: 15px !important; }
                 }
             `}</style>
         </div>

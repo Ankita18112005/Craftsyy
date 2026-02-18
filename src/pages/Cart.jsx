@@ -8,8 +8,8 @@ const Cart = () => {
 
     if (cartItems.length === 0) {
         return (
-            <div className="container section text-center" style={{ padding: '80px 20px' }}>
-                <div style={{ fontSize: '5rem', marginBottom: '20px' }}>🎀</div>
+            <div className="container section text-center" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+                <div style={{ fontSize: '5rem', marginBottom: '20px' }}></div>
                 <h2 style={{ fontSize: '2rem', marginBottom: '10px' }}>Your cart is empty</h2>
                 <p style={{ color: 'var(--color-text-light)', marginBottom: '30px' }}>
                     Looks like you haven&apos;t added anything yet!
@@ -54,7 +54,7 @@ const Cart = () => {
                                         {item.image ? (
                                             <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                         ) : (
-                                            <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #fce4ec, #f3e5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🎀</div>
+                                            <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #fce4ec, #f3e5f5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}></div>
                                         )}
                                     </div>
                                 </Link>
@@ -147,7 +147,7 @@ const Cart = () => {
                             </div>
                         </div>
 
-                        <Button variant="primary" onClick={() => alert('Checkout coming soon! 🎀')} style={{ width: '100%', marginTop: '25px', padding: '15px', fontSize: '1.1rem' }}>
+                        <Button variant="primary" onClick={() => alert('Checkout coming soon!')} style={{ width: '100%', marginTop: '25px', padding: '15px', fontSize: '1.1rem' }}>
                             Checkout <ShoppingBag size={18} style={{ marginLeft: 8 }} />
                         </Button>
 
@@ -173,13 +173,15 @@ const Cart = () => {
                         .cart-item { flex-wrap: wrap; gap: 15px !important; padding: 15px !important; }
                         .cart-item-image { width: 80px !important; height: 80px !important; }
                         .cart-item-info { min-width: 150px; }
-                        .cart-item-actions { width: 100%; justify-content: space-between; border-top: 1px solid #eee; pt-15px; padding-top: 15px !important; }
+                        .cart-item-actions { width: 100%; justify-content: space-between; border-top: 1px solid #eee; padding-top: 15px !important; }
                         .cart-item-remove { position: absolute; top: 10px; right: 10px; }
                     }
                     @media (max-width: 480px) {
                         h1 { font-size: 2rem !important; }
                         .cart-item-image { width: 60px !important; height: 60px !important; }
                         .cart-item-info h3 { font-size: 1rem !important; }
+                        .cart-summary { padding: 20px !important; }
+                        .cart-summary h3 { font-size: 1.1rem !important; }
                     }
                 `}</style>
             </div>

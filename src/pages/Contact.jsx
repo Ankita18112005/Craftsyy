@@ -13,8 +13,8 @@ const Contact = () => {
             <div style={{ backgroundColor: 'var(--color-primary-light)' }}>
                 <div className="container section">
                     <div className="text-center" style={{ marginBottom: '50px' }}>
-                        <h1 style={{ fontSize: '3rem', marginBottom: '15px' }}>Get in Touch</h1>
-                        <p style={{ fontSize: '1.2rem', color: 'var(--color-text-light)' }}>
+                        <h1 className="contact-title" style={{ fontSize: '3rem', marginBottom: '15px' }}>Get in Touch</h1>
+                        <p className="contact-subtitle" style={{ fontSize: '1.2rem', color: 'var(--color-text-light)' }}>
                             We&apos;d love to hear from you!
                         </p>
                     </div>
@@ -95,10 +95,16 @@ const Contact = () => {
                         @media (max-width: 960px) {
                             .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
                         }
+                        @media (max-width: 768px) {
+                            .contact-info { padding: 30px !important; }
+                            .contact-title { font-size: 2.2rem !important; }
+                            .contact-subtitle { font-size: 1rem !important; }
+                        }
                         @media (max-width: 480px) {
-                            .contact-info { padding: 25px !important; }
-                            h1 { font-size: 2.2rem !important; }
-                            p[style*="font-size: 1.2rem"] { font-size: 1rem !important; }
+                            .contact-info { padding: 24px !important; }
+                            .contact-title { font-size: 1.8rem !important; }
+                            .contact-subtitle { font-size: 0.95rem !important; }
+                            .contact-form input, .contact-form textarea { padding: 12px !important; font-size: 0.95rem !important; }
                         }
                     `}</style>
                 </div>

@@ -1,16 +1,28 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { ShoppingBag, Heart, Menu, X } from 'lucide-react';
+import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom';
+import { ShoppingBag, Heart, Menu, X, Search } from 'lucide-react';
 import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
 import '../styles/global.css';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [searchParams] = useSearchParams();
+    const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
+    const navigate = useNavigate();
     const { getCartCount } = useCart();
     const { getWishlistCount } = useWishlist();
     const cartCount = getCartCount();
     const wishCount = getWishlistCount();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+        } else {
+            navigate('/shop');
+        }
+    };
 
     const navLinks = [
         { name: 'Home', path: '/' },
@@ -34,12 +46,12 @@ const Navbar = () => {
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {/* Logo */}
                 <Link to="/" style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)', color: 'var(--color-text)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ color: 'var(--color-primary)', fontSize: '2rem' }}>🎀</span>
+                    <span style={{ color: 'var(--color-primary)', fontSize: '2rem' }}></span>
                     Handcrafttt
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="desktop-menu" style={{ display: 'flex', gap: '40px', alignItems: 'center', position: 'relative' }}>
+                <div className="desktop-menu" style={{ display: 'flex', gap: '30px', alignItems: 'center', position: 'relative' }}>
                     {navLinks.map((link) => (
                         <NavLink
                             key={link.name}
@@ -50,6 +62,36 @@ const Navbar = () => {
                             {link.name}
                         </NavLink>
                     ))}
+
+                    {/* Search Bar */}
+                    <form onSubmit={handleSearch} style={{ position: 'relative', marginLeft: '10px' }}>
+                        <input
+                            type="text"
+                            placeholder="Search crafts..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            style={{
+                                padding: '8px 15px 8px 35px',
+                                borderRadius: 'var(--radius-full)',
+                                border: '1px solid #ddd',
+                                fontSize: '0.9rem',
+                                width: '180px',
+                                background: 'white',
+                                transition: 'all 0.3s ease'
+                            }}
+                            className="search-input"
+                        />
+                        <Search
+                            size={18}
+                            style={{
+                                position: 'absolute',
+                                left: '12px',
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                color: '#999'
+                            }}
+                        />
+                    </form>
                 </div>
 
                 {/* Icons */}
@@ -97,11 +139,43 @@ const Navbar = () => {
                         {link.name}
                     </Link>
                 ))}
+                {/* Mobile Search */}
+                <form onSubmit={(e) => { handleSearch(e); setIsOpen(false); }} style={{ width: '100%', position: 'relative', marginTop: '10px' }}>
+                    <input
+                        type="text"
+                        placeholder="Search crafts..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        style={{
+                            width: '100%',
+                            padding: '12px 15px 12px 40px',
+                            borderRadius: 'var(--radius-lg)',
+                            border: '1px solid #eee',
+                            fontSize: '1rem'
+                        }}
+                    />
+                    <Search
+                        size={20}
+                        style={{
+                            position: 'absolute',
+                            left: '12px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            color: '#999'
+                        }}
+                    />
+                </form>
             </div>
 
             <style>{`
         .icon-hover:hover { transform: scale(1.1) rotate(5deg); }
         .nav-active { color: var(--color-primary) !important; font-weight: 700 !important; }
+        .search-input:focus {
+            width: 220px !important;
+            border-color: var(--color-primary) !important;
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+            outline: none;
+        }
         .nav-active::after {
           content: '';
           position: absolute;
@@ -116,7 +190,7 @@ const Navbar = () => {
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
           .mobile-toggle { display: block !important; }
-          nav { top: 0 !important; margin: 0 !important; borderRadius: 0 !important; }
+          nav { top: 0 !important; margin: 0 !important; border-radius: 0 !important; padding: 12px 0 !important; }
           .mobile-menu-link { 
             width: 100%; 
             padding: 12px !important; 
@@ -128,6 +202,9 @@ const Navbar = () => {
             background: var(--color-primary-light);
             transform: rotate(1deg) scale(1.05);
           }
+        }
+        @media (max-width: 480px) {
+          nav { padding: 10px 0 !important; }
         }
         @keyframes draw {
           from { width: 0; }

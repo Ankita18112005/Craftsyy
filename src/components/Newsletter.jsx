@@ -16,8 +16,8 @@ const Newsletter = () => {
             }} className="container newsletter-section animate-fade-up" >
 
                 {/* Decorative */}
-                <div className="particle animate-float" style={{ top: -30, left: -30, fontSize: '6rem', opacity: 0.5 }}>🎀</div>
-                <div className="particle animate-float delay-200" style={{ bottom: -30, right: -30, fontSize: '6rem', opacity: 0.5 }}>🎀</div>
+                <div className="particle animate-float" style={{ top: -30, left: -30, fontSize: '6rem', opacity: 0.5 }}></div>
+                <div className="particle animate-float delay-200" style={{ bottom: -30, right: -30, fontSize: '6rem', opacity: 0.5 }}></div>
                 <div className="particle" style={{ top: '50%', right: '10%', width: '200px', height: '200px', background: 'var(--color-accent)', borderRadius: '50%', filter: 'blur(60px)', opacity: 0.2 }}></div>
 
 
@@ -73,7 +73,7 @@ const Newsletter = () => {
                 }
                 @media (max-width: 480px) {
                     .newsletter-section {
-                        padding: 30px 15px !important;
+                        padding: 30px 24px !important;
                         margin-top: 30px !important;
                     }
                     .newsletter-form-inner { 

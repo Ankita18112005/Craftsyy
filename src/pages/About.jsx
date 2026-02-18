@@ -11,7 +11,8 @@ const About = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '40px 20px'
+            paddingTop: '40px',
+            paddingBottom: '40px'
         }}>
             <div className="container about-container" style={{
                 maxWidth: '900px',
@@ -41,17 +42,17 @@ const About = () => {
 
                     <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px', marginTop: '50px' }}>
                         <div>
-                            <div style={{ fontSize: '3.5rem', marginBottom: '15px' }}>🌿</div>
+                            <div style={{ fontSize: '3.5rem', marginBottom: '15px' }}></div>
                             <h3 style={{ color: 'var(--color-primary)' }}>Sustainable</h3>
                             <p>Eco-friendly materials</p>
                         </div>
                         <div>
-                            <div style={{ fontSize: '3.5rem', marginBottom: '15px' }}>🎨</div>
+                            <div style={{ fontSize: '3.5rem', marginBottom: '15px' }}></div>
                             <h3 style={{ color: 'var(--color-primary)' }}>Handmade</h3>
                             <p>Crafted by humans</p>
                         </div>
                         <div>
-                            <div style={{ fontSize: '3.5rem', marginBottom: '15px' }}>💝</div>
+                            <div style={{ fontSize: '3.5rem', marginBottom: '15px' }}></div>
                             <h3 style={{ color: 'var(--color-primary)' }}>With Love</h3>
                             <p>Packed with care</p>
                         </div>
@@ -70,8 +71,11 @@ const About = () => {
                     .about-grid div div { font-size: 2.5rem !important; }
                 }
                 @media (max-width: 480px) {
-                    .about-title { font-size: 1.8rem !important; }
-                    .about-grid { grid-template-columns: 1fr !important; }
+                    .about-container { padding: 30px 24px !important; }
+                    .about-title { font-size: 1.6rem !important; }
+                    .about-subtitle { font-size: 1.3rem !important; }
+                    .about-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+                    .about-container p { font-size: 1rem !important; line-height: 1.6 !important; margin-bottom: 20px !important; }
                 }
             `}</style>
         </div>

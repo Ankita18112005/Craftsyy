@@ -54,19 +54,6 @@ const Home = () => {
 
                     }}></div>
                     {/* Floating Stars & Bows */}
-                    <div className="animate-float" style={{ position: 'absolute', top: '5%', left: '5%', fontSize: '2.5rem', opacity: 0.5, zIndex: 1, transform: 'rotate(-15deg)' }}>🎀</div>
-                    <div className="animate-float delay-200" style={{ position: 'absolute', top: '10%', right: '8%', fontSize: '2rem', opacity: 0.5, zIndex: 1, transform: 'rotate(10deg)' }}>🎀</div>
-                    <div className="animate-float delay-100" style={{ position: 'absolute', bottom: '18%', left: '10%', fontSize: '1.8rem', opacity: 0.45, zIndex: 1, transform: 'rotate(20deg)' }}>🎀</div>
-                    <div className="animate-float delay-300" style={{ position: 'absolute', bottom: '25%', right: '5%', fontSize: '2.2rem', opacity: 0.5, zIndex: 1, transform: 'rotate(-8deg)' }}>🎀</div>
-                    <div className="animate-float" style={{ position: 'absolute', top: '50%', left: '2%', fontSize: '2rem', opacity: 0.4, zIndex: 1, transform: 'rotate(12deg)' }}>🎀</div>
-                    <div className="animate-float delay-200" style={{ position: 'absolute', top: '30%', right: '2%', fontSize: '1.5rem', opacity: 0.45, zIndex: 1, transform: 'rotate(-20deg)' }}>🎀</div>
-                    <div className="animate-float delay-100" style={{ position: 'absolute', bottom: '8%', left: '40%', fontSize: '1.6rem', opacity: 0.4, zIndex: 1, transform: 'rotate(5deg)' }}>🎀</div>
-                    <div className="animate-float delay-300" style={{ position: 'absolute', top: '15%', left: '30%', fontSize: '1.4rem', opacity: 0.35, zIndex: 1, transform: 'rotate(-10deg)' }}>🎀</div>
-                    <div className="animate-float" style={{ position: 'absolute', top: '8%', right: '25%', fontSize: '1.8rem', opacity: 0.4, zIndex: 1, transform: 'rotate(18deg)' }}>🎀</div>
-                    <div className="animate-float delay-100" style={{ position: 'absolute', bottom: '12%', right: '20%', fontSize: '2rem', opacity: 0.45, zIndex: 1, transform: 'rotate(-5deg)' }}>🎀</div>
-                    <div className="animate-float delay-200" style={{ position: 'absolute', top: '60%', right: '15%', fontSize: '1.5rem', opacity: 0.35, zIndex: 1, transform: 'rotate(8deg)' }}>🎀</div>
-                    <div className="animate-float delay-300" style={{ position: 'absolute', bottom: '5%', left: '15%', fontSize: '1.7rem', opacity: 0.4, zIndex: 1, transform: 'rotate(-12deg)' }}>🎀</div>
-                    <div className="animate-float" style={{ position: 'absolute', top: '40%', left: '20%', fontSize: '1.3rem', opacity: 0.3, zIndex: 1, transform: 'rotate(15deg)' }}>🎀</div>
 
                     <div className="container" style={{ position: 'relative', zIndex: 2 }}>
                         <div className="text-center" style={{ marginBottom: '70px', position: 'relative' }}>
@@ -85,25 +72,7 @@ const Home = () => {
                             </div>
 
                             <h2 className="category-title" style={{ marginBottom: '10px', position: 'relative', display: 'inline-block', color: 'var(--color-primary)', textShadow: '0 2px 6px rgba(255,255,255,0.4)' }}>
-                                Shop by{' '}
-                                <span style={{ position: 'relative', display: 'inline-block' }}>
-                                    <span style={{ position: 'relative', zIndex: 1 }}>Category</span>
-                                    {/* Highlight - Cyan for contrast against vibrant red/orange */}
-                                    <span style={{
-                                        position: 'absolute',
-                                        bottom: '8px',
-                                        left: '-5px',
-                                        width: '105%',
-                                        height: '15px',
-                                        background: '#4ECDC4', /* Turquoise/Cyan */
-                                        opacity: 0.8,
-                                        zIndex: 0,
-                                        transform: 'rotate(-1deg)',
-                                        borderRadius: '4px',
-                                        mixBlendMode: 'hard-light'
-                                    }}></span>
-                                </span>{' '}
-                                🎀
+                                Shop by Category
                             </h2>
                             <p className="category-subtitle" style={{ color: 'var(--color-primary)', marginTop: '15px', fontSize: '1.2rem', fontWeight: '500', opacity: 0.85 }}>Find the perfect handmade gift</p>
                         </div>
@@ -112,7 +81,7 @@ const Home = () => {
                             display: 'grid',
                             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
                             gap: '30px',
-                            padding: '10px 20px',
+                            padding: '10px 0',
                             position: 'relative'
                         }}>
                             {categories.map(cat => (
@@ -193,12 +162,16 @@ const Home = () => {
                     .category-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; gap: 20px !important; padding: 10px !important; }
                     .section-title { font-size: 2rem !important; }
                     div[style*="width: 100px"] { width: 40px !important; }
+                    .animate-marquee > div { min-width: 240px !important; }
                 }
                 @media (max-width: 480px) {
+                    div[style*="padding: 100px 0"] { padding: 40px 0 !important; }
                     .category-title { font-size: 1.8rem !important; }
-                    .category-grid { grid-template-columns: 1fr 1fr !important; }
-                    .animate-marquee { gap: 20px !important; }
-                    div[key*="id"] { min-width: 240px !important; }
+                    .category-note { font-size: 1.2rem !important; top: -20px !important; }
+                    .category-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+                    .section-title { font-size: 1.6rem !important; }
+                    .animate-marquee { gap: 15px !important; }
+                    .animate-marquee > div { min-width: 220px !important; }
                 }
             `}</style>
         </div>
