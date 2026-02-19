@@ -28,7 +28,7 @@ const ProductCard = ({ product, style }) => {
 
     return (
         <div className="product-card glass" style={{
-            width: '175px',
+            width: '100%',
             borderRadius: 'var(--radius-md)',
             overflow: 'hidden',
             position: 'relative',

@@ -109,11 +109,11 @@ const Shop = () => {
                     ))}
                 </div>
 
-                {/* Product Grid */}
+                /* Product Grid */
                 <div className="product-grid" style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, 175px)',
-                    gap: '16px',
+                    gridTemplateColumns: 'repeat(4, 1fr)',
+                    gap: '20px',
                     justifyContent: 'center',
                     opacity: fadeIn ? 1 : 0,
                     transform: fadeIn ? 'translateY(0)' : 'translateY(15px)',
@@ -150,24 +150,29 @@ const Shop = () => {
             <style>{`
                 .shop-title { font-size: 3rem; }
                 
+                @media (max-width: 1024px) {
+                    .product-grid { 
+                        grid-template-columns: repeat(3, 1fr) !important; 
+                        gap: 20px !important;
+                    }
+                }
+
                 @media (max-width: 768px) {
                     .shop-title { font-size: 2.2rem !important; }
                     .shop-subtitle { font-size: 1rem !important; }
                     .filter-tabs { gap: 8px !important; }
                     .filter-btn { padding: 8px 14px !important; font-size: 0.85rem !important; }
                     .product-grid { 
-                        grid-template-columns: repeat(auto-fill, 175px) !important; 
+                        grid-template-columns: repeat(2, 1fr) !important; 
                         gap: 16px !important;
-                        justify-content: center !important;
                     }
                 }
 
-                @media (max-width: 400px) {
+                @media (max-width: 480px) {
                     .shop-title { font-size: 1.8rem !important; }
                     .product-grid { 
-                        grid-template-columns: repeat(2, 1fr) !important; 
-                        gap: 12px !important;
-                        justify-content: center !important;
+                        grid-template-columns: 1fr !important;
+                        gap: 16px !important;
                     }
                     .filter-btn { padding: 7px 12px !important; font-size: 0.8rem !important; }
                 }
