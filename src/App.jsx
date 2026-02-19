@@ -37,6 +37,7 @@ const App = () => {
                         <ToastProvider>
                             <ScrollToTop />
                             <div className="app" style={{
+                                width: '100%',
                                 display: 'flex',
                                 flexDirection: 'column',
                                 minHeight: '100vh',

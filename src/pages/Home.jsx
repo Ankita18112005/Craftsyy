@@ -131,7 +131,8 @@ const Home = () => {
                             {[...Array(4)].map((_, setIndex) => (
                                 featuredProducts.map(product => (
                                     <div key={`${product.id}-${setIndex}`} style={{ flexShrink: 0 }}>
-                                        <ProductCard product={product} style={{ width: '260px' }} />
+                                        {/* Remove inline width, use class */}
+                                        <ProductCard product={product} style={{ width: 'var(--marquee-card-width)' }} />
                                     </div>
                                 ))
                             ))}
@@ -150,6 +151,10 @@ const Home = () => {
 
             <style>{`
                 .category-title { font-size: 3.5rem; }
+                :root {
+                    --marquee-card-width: 260px;
+                }
+                
                 @media (max-width: 768px) {
                     div[style*="padding: 100px 0"] { padding: 60px 0 !important; }
                     .category-title { font-size: 2.2rem !important; }
@@ -158,7 +163,7 @@ const Home = () => {
                     .category-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; gap: 20px !important; padding: 10px !important; }
                     .section-title { font-size: 2rem !important; }
                     div[style*="width: 100px"] { width: 40px !important; }
-                    .animate-marquee > div { min-width: 240px !important; }
+                    :root { --marquee-card-width: 240px; }
                 }
                 @media (max-width: 480px) {
                     div[style*="padding: 100px 0"] { padding: 40px 0 !important; }
@@ -167,7 +172,7 @@ const Home = () => {
                     .category-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
                     .section-title { font-size: 1.6rem !important; }
                     .animate-marquee { gap: 15px !important; }
-                    .animate-marquee > div { min-width: 220px !important; }
+                    :root { --marquee-card-width: 180px; }
                 }
             `}</style>
         </div>

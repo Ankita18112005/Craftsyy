@@ -33,6 +33,7 @@ const Wishlist = () => {
 
     return (
         <div style={{
+            width: '100%',
             backgroundImage: 'url("/images/new bg.jpeg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -185,10 +186,10 @@ const Wishlist = () => {
 
                 @media (max-width: 480px) {
                     .wishlist-grid {
-                        grid-template-columns: 1fr;
-                        gap: 16px;
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 12px;
                     }
-                    .wishlist-item-image { height: 200px; }
+                    .wishlist-item-image { height: 140px; }
                 }
             `}</style>
         </div>

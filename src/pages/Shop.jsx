@@ -51,6 +51,7 @@ const Shop = () => {
 
     return (
         <div style={{
+            width: '100%',
             backgroundImage: 'url("/images/new bg.jpeg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -171,8 +172,8 @@ const Shop = () => {
                 @media (max-width: 480px) {
                     .shop-title { font-size: 1.8rem !important; }
                     .product-grid { 
-                        grid-template-columns: 1fr !important;
-                        gap: 16px !important;
+                        grid-template-columns: repeat(2, 1fr) !important;
+                        gap: 12px !important;
                     }
                     .filter-btn { padding: 7px 12px !important; font-size: 0.8rem !important; }
                 }

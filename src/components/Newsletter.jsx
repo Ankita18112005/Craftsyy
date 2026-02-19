@@ -2,7 +2,7 @@ import Button from './Button';
 
 const Newsletter = () => {
     return (
-        <div style={{ backgroundColor: 'var(--color-primary-light)', }}>
+        <div className="newsletter-wrapper" style={{ backgroundColor: 'var(--color-primary-light)', }}>
             <section style={{
                 background: 'var(--gradient-card)',
                 padding: '80px 24px',
@@ -61,6 +61,19 @@ const Newsletter = () => {
             </section>
 
             <style>{`
+                .newsletter-wrapper {
+                    padding: 0 32px;
+                }
+                @media (max-width: 768px) {
+                    .newsletter-wrapper {
+                        padding: 0 24px;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .newsletter-wrapper {
+                        padding: 0 16px;
+                    }
+                }
                 @media (max-width: 768px) {
                     .newsletter-section { 
                         padding: 40px 20px !important; 

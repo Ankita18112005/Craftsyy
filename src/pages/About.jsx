@@ -15,7 +15,7 @@ const About = () => {
             <div className="container about-container" style={{
                 maxWidth: '900px',
                 background: 'rgba(255, 255, 255, 0.95)',
-                padding: '60px',
+                padding: '60px 100px',
                 borderRadius: 'var(--radius-lg)',
                 boxShadow: 'var(--shadow-lg)',
                 backdropFilter: 'blur(5px)',
@@ -62,14 +62,14 @@ const About = () => {
                 .about-title { font-size: 3.5rem; }
                 .about-subtitle { font-size: 2rem; }
                 @media (max-width: 768px) {
-                    .about-container { padding: 40px 20px !important; }
+                    .about-container { padding: 60px 50px !important; }
                     .about-title { font-size: 2.2rem !important; }
                     .about-subtitle { font-size: 1.6rem !important; }
                     .about-grid { gap: 30px !important; }
                     .about-grid div div { font-size: 2.5rem !important; }
                 }
                 @media (max-width: 480px) {
-                    .about-container { padding: 30px 24px !important; }
+                    .about-container { padding: 40px 40px !important; }
                     .about-title { font-size: 1.6rem !important; }
                     .about-subtitle { font-size: 1.3rem !important; }
                     .about-grid { grid-template-columns: 1fr !important; gap: 20px !important; }

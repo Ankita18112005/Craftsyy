@@ -72,7 +72,7 @@ const Cart = () => {
                                         <button
                                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
                                             style={{
-                                                width: '34px', height: '34px', borderRadius: '50%',
+                                                width: '40px', height: '40px', borderRadius: '50%',
                                                 border: '2px solid var(--color-secondary)', background: 'white',
                                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                                 cursor: 'pointer', transition: 'all 0.2s ease'
@@ -86,7 +86,7 @@ const Cart = () => {
                                         <button
                                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                             style={{
-                                                width: '34px', height: '34px', borderRadius: '50%',
+                                                width: '40px', height: '40px', borderRadius: '50%',
                                                 border: '2px solid var(--color-secondary)', background: 'white',
                                                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                                                 cursor: 'pointer', transition: 'all 0.2s ease'
@@ -175,14 +175,16 @@ const Cart = () => {
                         .cart-item-image { width: 80px !important; height: 80px !important; }
                         .cart-item-info { min-width: 150px; }
                         .cart-item-actions { width: 100%; justify-content: space-between; border-top: 1px solid #eee; padding-top: 15px !important; }
-                        .cart-item-remove { position: absolute; top: 10px; right: 10px; }
+                        .cart-item-remove { position: absolute; top: 10px; right: 10px; padding: 12px; } /* Larger touch area */
                     }
                     @media (max-width: 480px) {
                         h1 { font-size: 2rem !important; }
-                        .cart-item-image { width: 60px !important; height: 60px !important; }
+                        .cart-item-image { width: 70px !important; height: 70px !important; }
                         .cart-item-info h3 { font-size: 1rem !important; }
                         .cart-summary { padding: 20px !important; }
                         .cart-summary h3 { font-size: 1.1rem !important; }
+                        /* Ensure quantity buttons are easy to tap */
+                        .cart-item-actions button { width: 44px !important; height: 44px !important; }
                     }
                 `}</style>
             </div>
