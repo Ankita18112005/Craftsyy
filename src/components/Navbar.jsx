@@ -166,6 +166,34 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {/* Mobile Menu */}
             <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
+                {/* Mobile Search */}
+                <form onSubmit={(e) => { handleSearch(e); setIsOpen(false); }} style={{ width: '100%', position: 'relative', marginBottom: '10px' }}>
+                    <input
+                        type="text"
+                        placeholder="Search crafts..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        style={{
+                            width: '100%',
+                            padding: '10px 15px 10px 35px',
+                            borderRadius: '12px',
+                            border: '1px solid rgba(0,0,0,0.05)',
+                            fontSize: '0.9rem',
+                            background: 'rgba(255,255,255,0.5)'
+                        }}
+                    />
+                    <Search
+                        size={16}
+                        style={{
+                            position: 'absolute',
+                            left: '12px',
+                            top: '50%',
+                            transform: 'translateY(-50%)',
+                            color: '#888'
+                        }}
+                    />
+                </form>
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
                     {navLinks.map((link) => (
                         <NavLink
@@ -206,34 +234,6 @@ const Navbar = () => {
                         )}
                     </Link>
                 </div>
-
-                {/* Mobile Search */}
-                <form onSubmit={(e) => { handleSearch(e); setIsOpen(false); }} style={{ width: '100%', position: 'relative', marginTop: '10px' }}>
-                    <input
-                        type="text"
-                        placeholder="Search crafts..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        style={{
-                            width: '100%',
-                            padding: '10px 15px 10px 35px',
-                            borderRadius: '12px',
-                            border: '1px solid rgba(0,0,0,0.05)',
-                            fontSize: '0.9rem',
-                            background: 'rgba(255,255,255,0.5)'
-                        }}
-                    />
-                    <Search
-                        size={16}
-                        style={{
-                            position: 'absolute',
-                            left: '12px',
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            color: '#888'
-                        }}
-                    />
-                </form>
             </div>
 
             <style>{`
