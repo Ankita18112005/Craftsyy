@@ -92,16 +92,16 @@ const Wishlist = () => {
             </div>
 
             <style>{`
-                /* Wishlist Grid - compact layout, 2 per row where possible */
+                /* Wishlist Grid - compact layout, 4 per row */
                 .wishlist-grid {
                     display: grid;
-                    grid-template-columns: repeat(2, 175px);
-                    gap: 16px;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 20px;
                     justify-content: center;
                 }
 
                 .wishlist-item {
-                    width: 175px;
+                    width: 100%;
                     background: rgba(255,255,255,0.95);
                     border-radius: var(--radius-md);
                     overflow: hidden;
@@ -115,13 +115,14 @@ const Wishlist = () => {
                 }
 
                 .wishlist-item-image {
-                    height: 140px;
+                    height: 175px;
                     overflow: hidden;
                 }
                 .wishlist-item-image img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    object-position: center;
                     transition: transform 0.6s ease;
                 }
                 .wishlist-item-placeholder {
@@ -168,28 +169,26 @@ const Wishlist = () => {
                     flex-shrink: 0;
                 }
 
-                /* Mobile Adjustment - for very narrow screens */
-                @media (max-width: 400px) {
+                /* Responsive Adjustments */
+                @media (max-width: 1024px) {
                     .wishlist-grid {
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 12px;
+                        grid-template-columns: repeat(3, 1fr);
                     }
-                    .wishlist-item {
-                        width: 100%;
-                    }
-                    .wishlist-item-image { height: 120px; }
-                    .wishlist-item-details { padding: 8px; }
-                    .wishlist-item-details h3 { font-size: 0.85rem; }
-                    .wishlist-item-price { font-size: 0.9rem; margin-bottom: 8px; }
-                    .wishlist-remove-btn { width: 30px; height: 30px; }
-                    .wishlist-item-actions button { font-size: 0.75rem !important; padding: 6px !important; }
                 }
 
-                /* Ensure desktop/tablet still look good if screen is wide */
-                @media (min-width: 768px) {
+                @media (max-width: 768px) {
                     .wishlist-grid {
-                        grid-template-columns: repeat(auto-fill, 175px);
+                        grid-template-columns: repeat(2, 1fr);
+                        gap: 16px;
                     }
+                }
+
+                @media (max-width: 480px) {
+                    .wishlist-grid {
+                        grid-template-columns: 1fr;
+                        gap: 16px;
+                    }
+                    .wishlist-item-image { height: 200px; }
                 }
             `}</style>
         </div>
