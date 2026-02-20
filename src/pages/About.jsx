@@ -10,7 +10,9 @@ const About = () => {
             alignItems: 'center',
             justifyContent: 'center',
             paddingTop: '40px',
-            paddingBottom: '40px'
+            paddingBottom: '40px',
+            paddingLeft: '20px',
+            paddingRight: '20px'
         }}>
             <div className="container about-container" style={{
                 maxWidth: '900px',
