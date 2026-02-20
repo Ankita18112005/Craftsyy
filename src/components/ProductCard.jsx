@@ -128,8 +128,10 @@ const ProductCard = ({ product, style }) => {
             </div>
 
             <style>{`
+                .product-card {
+                    min-width: 0; /* prevent grid blowout */
+                }
                 @media (max-width: 480px) {
-                    .product-card-image { height: 140px !important; }
                     .product-card-details { padding: 10px !important; }
                     .product-card-name { font-size: 0.9rem !important; }
                     .product-card-price { font-size: 0.95rem !important; }

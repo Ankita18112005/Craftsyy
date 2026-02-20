@@ -28,7 +28,7 @@ const Login = () => {
             backgroundSize: '24px 24px',
             padding: '40px 20px'
         }}>
-            <div className="glass" style={{
+            <div className="login-card glass" style={{
                 padding: '48px 40px 40px',
                 borderRadius: 'var(--radius-lg)',
                 width: '100%',
@@ -113,6 +113,19 @@ const Login = () => {
                     New to Craftsyyy? <Link to="/signup" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>Create Account</Link>
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 480px) {
+                    .login-card {
+                        padding: 32px 20px 28px !important;
+                    }
+                }
+                @media (max-width: 360px) {
+                    .login-card {
+                        padding: 28px 16px 24px !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 };

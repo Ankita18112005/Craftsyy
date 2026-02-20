@@ -17,7 +17,7 @@ const About = () => {
             <div className="container about-container" style={{
                 maxWidth: '900px',
                 background: 'rgba(255, 255, 255, 0.95)',
-                padding: '60px 100px',
+                padding: 'clamp(30px, 6vw, 60px) clamp(20px, 8vw, 100px)',
                 borderRadius: 'var(--radius-lg)',
                 boxShadow: 'var(--shadow-lg)',
                 backdropFilter: 'blur(5px)',
@@ -61,17 +61,19 @@ const About = () => {
             </div>
 
             <style>{`
-                .about-title { font-size: 3.5rem; }
-                .about-subtitle { font-size: 2rem; }
+                .about-title { font-size: clamp(1.6rem, 5vw, 3.5rem); }
+                .about-subtitle { font-size: clamp(1.3rem, 3vw, 2rem); }
                 @media (max-width: 768px) {
-                    .about-container { padding: 60px 50px !important; }
                     .about-title { font-size: 2.2rem !important; }
                     .about-subtitle { font-size: 1.6rem !important; }
                     .about-grid { gap: 30px !important; }
                     .about-grid div div { font-size: 2.5rem !important; }
+                    /* Fix: fixed background causes perf issues on mobile */
+                    .section[style*="backgroundAttachment"] {
+                        background-attachment: scroll !important;
+                    }
                 }
                 @media (max-width: 480px) {
-                    .about-container { padding: 40px 40px !important; }
                     .about-title { font-size: 1.6rem !important; }
                     .about-subtitle { font-size: 1.3rem !important; }
                     .about-grid { grid-template-columns: 1fr !important; gap: 20px !important; }

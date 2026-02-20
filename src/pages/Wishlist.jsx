@@ -45,26 +45,38 @@ const Wishlist = () => {
                     <ArrowLeft size={16} /> Back to Shop
                 </Link>
 
-                <h1 style={{ fontSize: '2.5rem', marginBottom: '40px' }}>
-                    My Wishlist <Heart size={28} color="var(--color-love)" fill="var(--color-love)" style={{ verticalAlign: 'middle' }} />
+                <h1 style={{ fontSize: '2.5rem', marginBottom: '40px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    My Wishlist <Heart size={28} color="#e53935" fill="#e53935" />
                 </h1>
 
                 <div className="wishlist-grid">
                     {wishlistItems.map(item => (
                         <div key={item.id} className="wishlist-item">
                             {/* Image */}
-                            <Link to={`/product/${item.id}`}>
-                                <div className="wishlist-item-image">
-                                    {item.image ? (
-                                        <img src={item.image} alt={item.name}
-                                            onMouseEnter={(e) => e.target.style.transform = 'scale(1.08)'}
-                                            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                                        />
-                                    ) : (
-                                        <div className="wishlist-item-placeholder"></div>
-                                    )}
+                            <div style={{ position: 'relative' }}>
+                                {/* Red Heart - Top Right Corner */}
+                                <div style={{
+                                    position: 'absolute', top: 10, right: 10,
+                                    background: 'rgba(255,255,255,0.9)', borderRadius: '50%',
+                                    width: '32px', height: '32px', display: 'flex',
+                                    alignItems: 'center', justifyContent: 'center',
+                                    zIndex: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.12)'
+                                }}>
+                                    <Heart size={16} color="#e53935" fill="#e53935" />
                                 </div>
-                            </Link>
+                                <Link to={`/product/${item.id}`}>
+                                    <div className="wishlist-item-image">
+                                        {item.image ? (
+                                            <img src={item.image} alt={item.name}
+                                                onMouseEnter={(e) => e.target.style.transform = 'scale(1.08)'}
+                                                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                                            />
+                                        ) : (
+                                            <div className="wishlist-item-placeholder"></div>
+                                        )}
+                                    </div>
+                                </Link>
+                            </div>
 
                             {/* Details */}
                             <div className="wishlist-item-details">

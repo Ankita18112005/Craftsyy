@@ -80,7 +80,7 @@ const Home = () => {
 
                         <div className="category-grid" style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                            gridTemplateColumns: 'repeat(auto-fit, minmax(min(220px, 100%), 1fr))',
                             gap: '30px',
                             padding: '10px 0',
                             position: 'relative'
@@ -155,12 +155,17 @@ const Home = () => {
                     --marquee-card-width: 260px;
                 }
                 
+                /* Category cards: equal size */
+                .category-grid > div {
+                    min-width: 0; /* prevent grid blowout */
+                }
+
                 @media (max-width: 768px) {
                     div[style*="padding: 100px 0"] { padding: 60px 0 !important; }
                     .category-title { font-size: 2.2rem !important; }
                     .category-note { font-size: 1.4rem !important; top: -25px !important; }
                     .category-subtitle { font-size: 1rem !important; padding: 0 20px; }
-                    .category-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; gap: 20px !important; padding: 10px !important; }
+                    .category-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important; gap: 20px !important; padding: 10px !important; }
                     .section-title { font-size: 2rem !important; }
                     div[style*="width: 100px"] { width: 40px !important; }
                     :root { --marquee-card-width: 240px; }
@@ -169,7 +174,7 @@ const Home = () => {
                     div[style*="padding: 100px 0"] { padding: 40px 0 !important; }
                     .category-title { font-size: 1.8rem !important; }
                     .category-note { font-size: 1.2rem !important; top: -20px !important; }
-                    .category-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+                    .category-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
                     .section-title { font-size: 1.6rem !important; }
                     .animate-marquee { gap: 15px !important; }
                     :root { --marquee-card-width: 180px; }

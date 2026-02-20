@@ -29,7 +29,7 @@ const Signup = () => {
             backgroundSize: '24px 24px',
             padding: '40px 20px'
         }}>
-            <div className="glass" style={{
+            <div className="signup-card glass" style={{
                 padding: '48px 40px 40px',
                 borderRadius: 'var(--radius-lg)',
                 width: '100%',
@@ -47,7 +47,7 @@ const Signup = () => {
                     Join the Club! ✨
                 </h2>
                 <p style={{ textAlign: 'center', color: 'var(--color-text-light)', marginBottom: '30px' }}>
-                    Create an account to track orders & save favorites.
+                    Create an account to track orders &amp; save favorites.
                 </p>
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -135,6 +135,19 @@ const Signup = () => {
                     Already have an account? <Link to="/login" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>Sign In</Link>
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 480px) {
+                    .signup-card {
+                        padding: 32px 20px 28px !important;
+                    }
+                }
+                @media (max-width: 360px) {
+                    .signup-card {
+                        padding: 28px 16px 24px !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 };

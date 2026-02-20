@@ -5,6 +5,7 @@ import { useCart } from '../hooks/useCart';
 import { useWishlist } from '../hooks/useWishlist';
 import { useAuth } from '../context/AuthContext';
 import Button from './Button';
+import { createPortal } from 'react-dom';
 import '../styles/global.css';
 
 const Navbar = () => {
@@ -28,10 +29,10 @@ const Navbar = () => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = '';
         }
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = '';
         };
     }, [isOpen]);
 
@@ -51,147 +52,15 @@ const Navbar = () => {
         { name: 'Contact', path: '/contact', icon: <Phone size={20} /> },
     ];
 
-    return (
-        <nav style={{
-            padding: '16px 0',
-            position: 'sticky',
-            top: 0,
-            width: '100%',
-            zIndex: 1000,
-            transition: 'all 0.3s ease',
-            background: 'rgba(255, 255, 255, 0.85)',
-            backdropFilter: 'blur(12px)',
-            borderBottom: '1px solid rgba(0,0,0,0.05)',
-            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.03)'
-        }}>
-            <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                {/* Logo */}
-                <Link to="/" style={{
-                    fontSize: '1.8rem',
-                    fontFamily: 'var(--font-heading)',
-                    color: 'var(--color-text)',
-                    fontWeight: '800',
-                    letterSpacing: '-0.5px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    zIndex: 1001 // Ensure logo is above mobile menu overlay if needed, though menu covers it usually
-                }}>
-                    <img src="/bow.ico" alt="Bow" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
-                    CRAFTSYYY
-                </Link>
-
-                {/* Desktop Menu */}
-                <div className="desktop-menu" style={{ display: 'flex', gap: '30px', alignItems: 'center', position: 'relative' }}>
-                    {navLinks.map((link) => (
-                        <NavLink
-                            key={link.name}
-                            to={link.path}
-                            className={({ isActive }) => `nav-link ${isActive ? 'nav-active' : ''}`}
-                        >
-                            {link.name}
-                        </NavLink>
-                    ))}
-                </div>
-
-                {/* Icons */}
-                <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                    <div className="desktop-icons" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                        {/* Search Bar (Desktop) */}
-                        <form className="desktop-search" onSubmit={handleSearch} style={{ position: 'relative' }}>
-                            <input
-                                type="text"
-                                placeholder="Search crafts..."
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                style={{
-                                    padding: '8px 15px 8px 35px',
-                                    borderRadius: 'var(--radius-full)',
-                                    border: '1px solid #ddd',
-                                    fontSize: '0.9rem',
-                                    width: '180px',
-                                    background: 'white',
-                                    transition: 'all 0.3s ease'
-                                }}
-                                className="search-input"
-                            />
-                            <Search
-                                size={18}
-                                style={{
-                                    position: 'absolute',
-                                    left: '12px',
-                                    top: '50%',
-                                    transform: 'translateY(-50%)',
-                                    color: '#999'
-                                }}
-                            />
-                        </form>
-
-                        <Link to="/wishlist" className="icon-hover" style={{ color: 'var(--color-love)', position: 'relative' }}>
-                            <Heart size={24} fill={wishCount > 0 ? 'var(--color-love)' : 'none'} style={{ transition: 'all 0.3s ease' }} />
-                            {wishCount > 0 && (
-                                <span className="animate-pulse-glow" style={{
-                                    position: 'absolute', top: -8, right: -10,
-                                    background: 'var(--color-love)', color: 'white',
-                                    borderRadius: '50%', width: '20px', height: '20px',
-                                    fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center'
-                                }}>{wishCount}</span>
-                            )}
-                        </Link>
-                        <Link to="/cart" className="icon-hover" style={{ color: 'var(--color-text)', position: 'relative' }}>
-                            <ShoppingBag size={24} />
-                            {cartCount > 0 && (
-                                <span className="animate-pulse-glow" style={{
-                                    position: 'absolute', top: -8, right: -10,
-                                    background: 'var(--color-primary)', color: 'white',
-                                    borderRadius: '50%', width: '20px', height: '20px',
-                                    fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center'
-                                }}>{cartCount}</span>
-                            )}
-                        </Link>
-
-                        {/* Divider */}
-                        <div style={{ width: '1px', height: '24px', background: '#e0e0e0' }}></div>
-
-                        {/* Profile Icon or Login Button */}
-                        {user ? (
-                            <Link to="/profile" className="icon-hover" style={{ color: 'var(--color-text)', position: 'relative' }}>
-                                <div style={{
-                                    width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden',
-                                    border: '2px solid var(--color-primary)', padding: '2px'
-                                }}>
-                                    <img src={user.avatar} alt="Me" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
-                                </div>
-                            </Link>
-                        ) : (
-                            <Button
-                                variant="primary"
-                                onClick={() => navigate('/login')}
-                                style={{ padding: '8px 24px', fontSize: '0.9rem', boxShadow: 'none' }}
-                            >
-                                Login
-                            </Button>
-                        )}
-                    </div>
-
-                    {/* Mobile Toggle */}
-                    <button
-                        className="mobile-toggle"
-                        onClick={() => setIsOpen(true)}
-                        style={{ display: 'none', background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--color-text)' }}
-                    >
-                        <Menu size={28} />
-                    </button>
-                </div>
-            </div>
-
-            {/* Mobile Menu Overlay */}
+    // Mobile menu rendered via portal — completely outside the layout tree!
+    const mobileMenuPortal = createPortal(
+        <>
+            {/* Backdrop overlay */}
             <div
                 className={`mobile-overlay ${isOpen ? 'open' : ''}`}
                 onClick={() => setIsOpen(false)}
             />
-
-            {/* Mobile Menu Drawer */}
+            {/* Drawer */}
             <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
                 <div className="mobile-menu-header">
                     <div className="mobile-logo">
@@ -266,6 +135,148 @@ const Navbar = () => {
                     )}
                 </div>
             </div>
+        </>,
+        document.body
+    );
+
+    return (
+        <>
+            <nav style={{
+                padding: '16px 0',
+                position: 'sticky',
+                top: 0,
+                width: '100%',
+                zIndex: 1000,
+                transition: 'all 0.3s ease',
+                background: 'rgba(255, 255, 255, 0.85)',
+                backdropFilter: 'blur(12px)',
+                borderBottom: '1px solid rgba(0,0,0,0.05)',
+                boxShadow: '0 4px 30px rgba(0, 0, 0, 0.03)'
+            }}>
+                <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    {/* Logo */}
+                    <Link to="/" style={{
+                        fontSize: '1.8rem',
+                        fontFamily: 'var(--font-heading)',
+                        color: 'var(--color-text)',
+                        fontWeight: '800',
+                        letterSpacing: '-0.5px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        flexShrink: 0
+                    }}>
+                        <img src="/bow.ico" alt="Bow" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                        CRAFTSYYY
+                    </Link>
+
+                    {/* Desktop Menu */}
+                    <div className="desktop-menu" style={{ display: 'flex', gap: '30px', alignItems: 'center', position: 'relative' }}>
+                        {navLinks.map((link) => (
+                            <NavLink
+                                key={link.name}
+                                to={link.path}
+                                className={({ isActive }) => `nav-link ${isActive ? 'nav-active' : ''}`}
+                            >
+                                {link.name}
+                            </NavLink>
+                        ))}
+                    </div>
+
+                    {/* Icons */}
+                    <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                        <div className="desktop-icons" style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                            {/* Search Bar (Desktop) */}
+                            <form className="desktop-search" onSubmit={handleSearch} style={{ position: 'relative' }}>
+                                <input
+                                    type="text"
+                                    placeholder="Search crafts..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    style={{
+                                        padding: '8px 15px 8px 35px',
+                                        borderRadius: 'var(--radius-full)',
+                                        border: '1px solid #ddd',
+                                        fontSize: '0.9rem',
+                                        width: '180px',
+                                        background: 'white',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    className="search-input"
+                                />
+                                <Search
+                                    size={18}
+                                    style={{
+                                        position: 'absolute',
+                                        left: '12px',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                        color: '#999'
+                                    }}
+                                />
+                            </form>
+
+                            <Link to="/wishlist" className="icon-hover" style={{ color: 'var(--color-love)', position: 'relative' }}>
+                                <Heart size={24} fill={wishCount > 0 ? 'var(--color-love)' : 'none'} style={{ transition: 'all 0.3s ease' }} />
+                                {wishCount > 0 && (
+                                    <span className="animate-pulse-glow" style={{
+                                        position: 'absolute', top: -8, right: -10,
+                                        background: 'var(--color-love)', color: 'white',
+                                        borderRadius: '50%', width: '20px', height: '20px',
+                                        fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center'
+                                    }}>{wishCount}</span>
+                                )}
+                            </Link>
+                            <Link to="/cart" className="icon-hover" style={{ color: 'var(--color-text)', position: 'relative' }}>
+                                <ShoppingBag size={24} />
+                                {cartCount > 0 && (
+                                    <span className="animate-pulse-glow" style={{
+                                        position: 'absolute', top: -8, right: -10,
+                                        background: 'var(--color-primary)', color: 'white',
+                                        borderRadius: '50%', width: '20px', height: '20px',
+                                        fontSize: '0.75rem', fontWeight: 'bold', display: 'flex', justifyContent: 'center', alignItems: 'center'
+                                    }}>{cartCount}</span>
+                                )}
+                            </Link>
+
+                            {/* Divider */}
+                            <div style={{ width: '1px', height: '24px', background: '#e0e0e0' }}></div>
+
+                            {/* Profile Icon or Login Button */}
+                            {user ? (
+                                <Link to="/profile" className="icon-hover" style={{ color: 'var(--color-text)', position: 'relative' }}>
+                                    <div style={{
+                                        width: '32px', height: '32px', borderRadius: '50%', overflow: 'hidden',
+                                        border: '2px solid var(--color-primary)', padding: '2px'
+                                    }}>
+                                        <img src={user.avatar} alt="Me" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                                    </div>
+                                </Link>
+                            ) : (
+                                <Button
+                                    variant="primary"
+                                    onClick={() => navigate('/login')}
+                                    style={{ padding: '8px 24px', fontSize: '0.9rem', boxShadow: 'none' }}
+                                >
+                                    Login
+                                </Button>
+                            )}
+                        </div>
+
+                        {/* Mobile Toggle */}
+                        <button
+                            className="mobile-toggle"
+                            onClick={() => setIsOpen(true)}
+                            style={{ display: 'none', background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--color-text)' }}
+                        >
+                            <Menu size={28} />
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            {/* Mobile menu rendered via portal to document.body */}
+            {mobileMenuPortal}
 
             <style>{`
         /* Base Link Styling */
@@ -282,7 +293,7 @@ const Navbar = () => {
         /* Hover Effect */
         .nav-link:hover {
             color: var(--color-primary);
-            background: rgba(254, 226, 226, 0.5); /* lighter primary-light */
+            background: rgba(254, 226, 226, 0.5);
             transform: translateY(-1px);
         }
 
@@ -323,16 +334,24 @@ const Navbar = () => {
             color: var(--color-primary) !important;
         }
 
-        /* Mobile Menu Overlay */
+        /* =============================================
+           MOBILE MENU — DETACHED FROM LAYOUT (PORTAL)
+           Rendered directly on document.body via React portal.
+           Uses position: fixed so it NEVER affects page layout.
+           ============================================= */
+
+        /* Backdrop overlay */
         .mobile-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.2);
+            height: 100dvh;
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(4px);
-            z-index: 1001; /* Behind menu, above everything else */
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9998;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -342,20 +361,21 @@ const Navbar = () => {
             pointer-events: auto;
         }
 
-        /* Mobile Menu Drawer */
+        /* Slide-in drawer */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: 0;
-            width: 85%;
+            width: 85vw;
             max-width: 320px;
             height: 100vh;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 245, 245, 0.9) 100%);
+            height: 100dvh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 245, 245, 0.95) 100%);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            z-index: 1002;
+            z-index: 9999;
             padding: 24px;
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
             border-top-left-radius: 24px;
             border-bottom-left-radius: 24px;
             transform: translateX(100%);
@@ -363,6 +383,8 @@ const Navbar = () => {
             display: flex;
             flex-direction: column;
             border-left: 1px solid rgba(255, 255, 255, 0.4);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .mobile-menu.open {
@@ -382,15 +404,6 @@ const Navbar = () => {
             display: flex;
             align-items: center;
             gap: 8px;
-            /* Center logo if desired, or keep left aligned. Request said "Making the logo smaller and centered" 
-               but that usually implies centered in the menu header or centered on screen. 
-               Let's center it in the specific menu space relative to the close button? 
-               Actually standard pattern is logo left, close right. 
-               But "centered" in prompt might mean "centered in the drawer". 
-               Let's try to center it. */
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 32px; /* Offset for close button balance if needed, or just auto margins */
         }
 
         .mobile-search-form {
@@ -455,10 +468,6 @@ const Navbar = () => {
             transition: all 0.2s ease;
         }
 
-        .mobile-nav-link .hover-bg {
-            /* Handled by direct hover on link */
-        }
-
         .mobile-nav-link:hover {
             background: rgba(255, 255, 255, 0.6);
         }
@@ -497,7 +506,7 @@ const Navbar = () => {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: auto; /* Push footer to bottom */
+            margin-bottom: auto;
         }
 
         .secondary-chip {
@@ -546,7 +555,7 @@ const Navbar = () => {
             gap: 10px;
             padding: 14px;
             border-radius: 16px;
-            background: var(--gradient-main); /* Using theme gradient */
+            background: var(--gradient-main);
             color: white;
             font-weight: 700;
             border: none;
@@ -588,14 +597,16 @@ const Navbar = () => {
             object-fit: cover;
         }
 
-        /* Mobile */
+        /* =============================================
+           RESPONSIVE: Mobile breakpoint
+           ============================================= */
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
           .desktop-icons { display: none !important; }
           .mobile-toggle { display: block !important; }
         }
       `}</style>
-        </nav>
+        </>
     );
 };
 

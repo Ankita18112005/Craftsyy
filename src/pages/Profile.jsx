@@ -19,14 +19,14 @@ const Profile = () => {
 
     return (
         <div className="container section" style={{ flex: 1, paddingBottom: '60px' }}>
-            <div style={{
+            <div className="profile-grid" style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
                 gap: '40px',
                 alignItems: 'start'
             }}>
                 {/* User Card */}
-                <div className="glass hover-scale" style={{ padding: '40px', borderRadius: 'var(--radius-lg)', textAlign: 'center', position: 'relative' }}>
+                <div className="profile-card glass hover-scale" style={{ padding: '40px', borderRadius: 'var(--radius-lg)', textAlign: 'center', position: 'relative' }}>
                     <div style={{
                         width: '100px', height: '100px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 20px',
                         border: '4px solid white', boxShadow: 'var(--shadow-md)'
@@ -35,7 +35,7 @@ const Profile = () => {
                     </div>
                     <h2 style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)', marginBottom: '5px' }}>{user.name}</h2>
                     <p style={{ color: 'var(--color-text-light)', fontSize: '0.9rem', marginBottom: '20px' }}>{user.email}</p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                    <div className="profile-actions" style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
                         <Button variant="outline" style={{ padding: '8px 16px', fontSize: '0.9rem' }}>Edit Profile</Button>
                         <Button variant="secondary" onClick={() => { logout(); navigate('/'); }} style={{ padding: '8px 16px', fontSize: '0.9rem', color: 'var(--color-primary)' }}>
                             <LogOut size={16} style={{ marginRight: '5px' }} /> Sign Out
@@ -45,12 +45,12 @@ const Profile = () => {
 
                 {/* Dashboard Stats/Menu */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    <h3 style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-primary)', fontSize: '1.5rem', marginBottom: '10px' }}>
+                    <h3 className="dashboard-title" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-primary)', fontSize: '1.5rem', marginBottom: '10px' }}>
                         Dashboard
                     </h3>
 
                     {/* Feature Grid */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+                    <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
                         <div className="glass hover-scale" style={{ padding: '20px', borderRadius: 'var(--radius-md)', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
                             <Package size={32} color="var(--color-primary)" />
                             <span style={{ fontWeight: '600' }}>Orders</span>
@@ -70,14 +70,14 @@ const Profile = () => {
                     </div>
 
                     {/* Recent Orders List */}
-                    <div className="glass" style={{ padding: '30px', borderRadius: 'var(--radius-lg)', marginTop: '20px' }}>
+                    <div className="orders-card glass" style={{ padding: '30px', borderRadius: 'var(--radius-lg)', marginTop: '20px' }}>
                         <h4 style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             Recent Orders
                             <span style={{ fontSize: '0.8rem', color: 'var(--color-primary)', cursor: 'pointer' }}>View All</span>
                         </h4>
 
                         {mockOrders.map((order, i) => (
-                            <div key={order.id} style={{
+                            <div key={order.id} className="order-row" style={{
                                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                                 padding: '15px 0', borderBottom: i !== mockOrders.length - 1 ? '1px dashed #eee' : 'none'
                             }}>
@@ -102,6 +102,24 @@ const Profile = () => {
 
                 </div>
             </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .profile-grid { gap: 25px !important; }
+                    .profile-card { padding: 30px 20px !important; }
+                    .dashboard-title { font-size: 1.3rem !important; }
+                    .orders-card { padding: 20px !important; }
+                }
+                @media (max-width: 480px) {
+                    .profile-card { padding: 24px 16px !important; }
+                    .profile-actions { gap: 8px !important; }
+                    .profile-actions button { flex: 1; min-width: 0; }
+                    .dashboard-grid { gap: 12px !important; }
+                    .dashboard-grid > div { padding: 16px !important; }
+                    .orders-card { padding: 16px !important; }
+                    .order-row { flex-wrap: wrap; gap: 8px; }
+                }
+            `}</style>
         </div>
     );
 };

@@ -110,7 +110,7 @@ const Shop = () => {
                     ))}
                 </div>
 
-                /* Product Grid */
+                {/* Product Grid */}
                 <div className="product-grid" style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(4, 1fr)',
