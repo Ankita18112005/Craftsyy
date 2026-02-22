@@ -15,7 +15,9 @@ import Wishlist from './pages/Wishlist';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Checkout from './pages/Checkout';
 import { AuthProvider } from './context/AuthContext';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -56,6 +58,7 @@ const App = () => {
                                         <Route path="/profile" element={<Profile />} />
                                         <Route path="/login" element={<Login />} />
                                         <Route path="/signup" element={<Signup />} />
+                                        <Route path="/checkout" element={<Checkout />} />
                                     </Routes>
                                 </main>
                                 <Footer />
@@ -64,6 +67,7 @@ const App = () => {
                     </WishlistProvider>
                 </CartProvider>
             </AuthProvider>
+            <WhatsAppButton />
         </Router>
     );
 };

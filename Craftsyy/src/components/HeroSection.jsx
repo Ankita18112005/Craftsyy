@@ -134,9 +134,9 @@ const HeroSection = () => {
                     <div className="overlap-card overlap-left">
                         <div className="overlap-frame">
                             <div className="washi-tape" style={{
-                                top: '-12px', left: '10px', width: '50px',
-                                background: 'rgba(255, 107, 107, 0.4)',
-                                transform: 'rotate(-6deg)'
+                                top: '-14px', left: '15px', width: '55px',
+                                background: 'rgba(255, 107, 107, 0.45)',
+                                transform: 'rotate(-5deg)'
                             }}></div>
                             <img src="/images/keychain.jpeg" alt="Cute Keychains" />
                         </div>
@@ -145,13 +145,13 @@ const HeroSection = () => {
 
                     {/* Card 2 - Strawberry (Center, on top) */}
                     <div className="overlap-card overlap-center">
-                        <div className="overlap-label" style={{ marginBottom: '6px', marginTop: '0' }}>So Sweet!</div>
+                        <div className="overlap-label" style={{ marginBottom: '8px' }}>So Sweet!</div>
                         <div className="overlap-frame">
                             <div className="washi-tape" style={{
-                                bottom: '-12px', top: 'auto', left: '50%',
-                                transform: 'translateX(-50%) rotate(1deg)',
-                                width: '60px',
-                                background: 'rgba(78, 205, 196, 0.45)'
+                                bottom: '-14px', top: 'auto', left: '50%',
+                                transform: 'translateX(-50%) rotate(2deg)',
+                                width: '65px',
+                                background: 'rgba(78, 205, 196, 0.5)'
                             }}></div>
                             <img src="/images/strawbery.jpeg" alt="Strawberry Felt" />
                         </div>
@@ -161,11 +161,11 @@ const HeroSection = () => {
                     <div className="overlap-card overlap-right">
                         <div className="overlap-frame">
                             <div className="washi-tape" style={{
-                                top: '-10px', right: '-8px', left: 'auto',
-                                width: '40px', height: '40px',
-                                background: 'rgba(255, 230, 109, 0.55)',
+                                top: '-12px', right: '-6px', left: 'auto',
+                                width: '45px', height: '45px',
+                                background: 'rgba(255, 230, 109, 0.6)',
                                 transform: 'rotate(45deg)',
-                                borderRadius: '2px'
+                                borderRadius: '3px'
                             }}></div>
                             <img src="/images/donut.jpeg" alt="Donut Charms" />
                         </div>
@@ -184,22 +184,30 @@ const HeroSection = () => {
           position: relative;
           width: 100%;
           height: 420px;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          gap: 0;
         }
 
         .overlap-card {
-          position: absolute;
-          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), z-index 0.2s;
+          position: relative;
+          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
+        
         .overlap-card:hover {
-          transform: rotate(0deg) scale(1.08) !important;
+          transform: scale(1.05) translateY(-10px) !important;
           z-index: 20 !important;
         }
 
         .overlap-frame {
           background: white;
-          padding: 8px;
-          border-radius: 6px;
-          box-shadow: 0 6px 24px rgba(0,0,0,0.14), 0 2px 6px rgba(0,0,0,0.08);
+          padding: 10px;
+          border-radius: 8px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.15), 0 3px 8px rgba(0,0,0,0.1);
           position: relative;
           overflow: visible;
         }
@@ -214,96 +222,86 @@ const HeroSection = () => {
           font-size: 1.5rem;
           color: var(--color-primary);
           text-align: center;
-          margin-top: 8px;
+          margin-top: 10px;
+          font-weight: 600;
         }
 
         .washi-tape {
           position: absolute;
-          height: 20px;
-          border-radius: 2px;
+          height: 24px;
+          border-radius: 3px;
           z-index: 5;
           opacity: 0.9;
         }
 
         /* Left card */
         .overlap-left {
-          left: 0;
-          top: 40px;
-          transform: rotate(-8deg);
+          transform: rotate(-6deg) translateY(20px);
           z-index: 2;
+          margin-right: -30px;
         }
         .overlap-left .overlap-frame img {
-          width: 190px;
-          height: 220px;
-        }
-        .overlap-left .overlap-label {
-          transform: rotate(-3deg);
+          width: 200px;
+          height: 230px;
         }
 
         /* Center card (in front) */
         .overlap-center {
-          left: 50%;
-          top: 10px;
-          transform: translateX(-50%) rotate(1deg);
+          transform: translateY(0);
           z-index: 4;
         }
         .overlap-center .overlap-frame img {
-          width: 230px;
-          height: 260px;
-        }
-        .overlap-center .overlap-label {
-          transform: rotate(-2deg);
-        }
-        .overlap-center:hover {
-          transform: translateX(-50%) rotate(0deg) scale(1.08) !important;
+          width: 240px;
+          height: 270px;
         }
 
         /* Right card */
         .overlap-right {
-          right: 0;
-          top: 55px;
-          transform: rotate(8deg);
+          transform: rotate(6deg) translateY(20px);
           z-index: 3;
+          margin-left: -30px;
         }
         .overlap-right .overlap-frame img {
-          width: 170px;
-          height: 200px;
-        }
-        .overlap-right .overlap-label {
-          transform: rotate(4deg);
+          width: 180px;
+          height: 210px;
         }
 
         /* === Responsive === */
         @media (max-width: 960px) {
-          .container.responsive-grid { grid-template-columns: 1fr !important; text-align: center; gap: 40px !important; }
+          .container.responsive-grid { grid-template-columns: 1fr !important; text-align: center; gap: 50px !important; }
           .animate-fade-up { text-align: center !important; padding-right: 0 !important; }
-          .animate-fade-up > div { justify-content: center; margin-left: auto; margin-right: auto; }
           .hero-title { font-size: 3.5rem !important; }
           .hero-description { font-size: 1.2rem !important; margin-bottom: 30px !important; margin-left: auto; margin-right: auto; }
           .particle { display: none; }
           .blob-bg { display: none; }
-          .cards-container { height: 350px; max-width: 500px; margin: 0 auto; }
-          .overlap-left .overlap-frame img { width: 150px !important; height: 175px !important; }
-          .overlap-center .overlap-frame img { width: 185px !important; height: 210px !important; }
-          .overlap-right .overlap-frame img { width: 135px !important; height: 160px !important; }
+          .cards-container { height: 300px; max-width: 500px; margin: 0 auto; gap: -10px; }
+          .overlap-left .overlap-frame img { width: 160px !important; height: 185px !important; }
+          .overlap-center .overlap-frame img { width: 200px !important; height: 230px !important; }
+          .overlap-right .overlap-frame img { width: 145px !important; height: 170px !important; }
           .overlap-label { font-size: 1.2rem !important; }
-          .overlap-left { transform: rotate(-6deg); }
-          .overlap-right { transform: rotate(6deg); }
+          .overlap-left { transform: rotate(-5deg) translateY(15px); margin-right: -20px; }
+          .overlap-right { transform: rotate(5deg) translateY(15px); margin-left: -20px; }
+        }
+        @media (max-width: 600px) {
+          .cards-container { flex-wrap: wrap; height: auto; gap: 20px; padding: 20px 0; }
+          .overlap-card { margin: 0 10px !important; transform: none !important; }
+          .overlap-card:hover { transform: translateY(-8px) !important; }
+          .overlap-left .overlap-frame img { width: 140px !important; height: 160px !important; }
+          .overlap-center .overlap-frame img { width: 170px !important; height: 195px !important; }
+          .overlap-right .overlap-frame img { width: 130px !important; height: 150px !important; }
+          .overlap-label { font-size: 1rem !important; }
         }
         @media (max-width: 480px) {
           section[style*="padding: 80px 0"] { padding: 40px 0 !important; }
-          .hero-title { font-size: 2.2rem !important; letter-spacing: -1px !important; }
+          .hero-title { font-size: 2.4rem !important; letter-spacing: -1px !important; }
           .hero-description { font-size: 1rem !important; margin-bottom: 24px !important; }
-          .cards-container { height: 220px !important; max-width: 340px; }
-          .overlap-frame { padding: 5px !important; }
-          .overlap-left .overlap-frame img { width: 95px !important; height: 110px !important; }
-          .overlap-center .overlap-frame img { width: 115px !important; height: 130px !important; }
-          .overlap-right .overlap-frame img { width: 85px !important; height: 100px !important; }
-          .overlap-label { font-size: 0.9rem !important; margin-top: 4px !important; }
-          .overlap-left { top: 25px !important; transform: rotate(-5deg); }
-          .overlap-center { top: 5px !important; }
-          .overlap-right { top: 30px !important; transform: rotate(5deg); }
-          .washi-tape { height: 14px !important; }
+          .cards-container { padding: 15px 0; }
+          .overlap-frame { padding: 6px !important; }
+          .overlap-left .overlap-frame img { width: 110px !important; height: 130px !important; }
+          .overlap-center .overlap-frame img { width: 140px !important; height: 160px !important; }
+          .overlap-right .overlap-frame img { width: 100px !important; height: 120px !important; }
+          .overlap-label { font-size: 0.9rem !important; margin-top: 6px !important; }
+          .washi-tape { height: 16px !important; }
           div[style*="marginTop: '48px'"], div[style*="margin-top: 48px"] { font-size: 1.1rem !important; margin-top: 24px !important; }
         }
       `}</style>

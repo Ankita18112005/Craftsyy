@@ -1,0 +1,56 @@
+import { Instagram, Facebook, Twitter, Heart } from 'lucide-react';
+
+const Footer = () => {
+    return (
+        <footer className="footer" style={{
+            background: 'var(--color-primary-light)',
+            marginTop: '0',
+            padding: '60px 20px 40px',
+            textAlign: 'center',
+            borderTop: '1px solid rgba(239, 68, 68, 0.1)',
+            width: '100%',
+            maxWidth: '100%'
+        }}>
+            <div style={{ width: '100%' }}>
+                <h2 className="footer-logo" style={{ fontFamily: 'var(--font-heading)', marginBottom: '20px', color: 'var(--color-primary)' }}>CRAFTSYYY</h2>
+                <p className="footer-tagline" style={{ marginBottom: '20px', color: 'var(--color-text-light)', padding: '0 20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                    Handmade with <Heart size={16} fill="var(--color-primary)" color="var(--color-primary)" /> for you.
+                </p>
+
+                <div className="footer-socials" style={{ display: 'flex', justifyContent: 'center', gap: '24px', marginBottom: '30px', flexWrap: 'wrap' }}>
+                    <a href="#" className="social-icon" style={{ color: 'var(--color-text)', padding: '8px' }} aria-label="Instagram"><Instagram /></a>
+                    <a href="#" className="social-icon" style={{ color: 'var(--color-text)', padding: '8px' }} aria-label="Facebook"><Facebook /></a>
+                    <a href="#" className="social-icon" style={{ color: 'var(--color-text)', padding: '8px' }} aria-label="Twitter"><Twitter /></a>
+                </div>
+
+                <div className="footer-copyright" style={{ fontSize: '0.9rem', color: '#999', marginTop: '20px', padding: '0 10px' }}>
+                    &copy; {new Date().getFullYear()} CRAFTSYYY. All rights reserved.
+                </div>
+            </div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .footer { padding: 40px 20px 30px !important; }
+                    .footer-logo { font-size: 1.8rem !important; }
+                    .footer-tagline { font-size: 0.95rem !important; padding: 0 15px !important; }
+                    .footer-socials { gap: 16px !important; }
+                }
+                @media (max-width: 480px) {
+                    .footer { padding: 32px 16px 24px !important; }
+                    .footer-logo { font-size: 1.5rem !important; margin-bottom: 16px !important; }
+                    .footer-tagline { font-size: 0.9rem !important; padding: 0 10px !important; margin-bottom: 16px !important; }
+                    .footer-socials { gap: 12px !important; margin-bottom: 24px !important; }
+                    .footer-copyright { font-size: 0.75rem !important; }
+                    .social-icon svg { width: 20px; height: 20px; }
+                }
+                @media (max-width: 360px) {
+                    .footer { padding: 28px 12px 20px !important; }
+                    .footer-logo { font-size: 1.35rem !important; }
+                    .footer-tagline { font-size: 0.85rem !important; }
+                }
+            `}</style>
+        </footer>
+    );
+};
+
+export default Footer;

@@ -12,7 +12,7 @@ const Newsletter = () => {
                 overflow: 'hidden',
                 border: '1px solid white',
                 boxShadow: 'var(--shadow-md)',
-                marginBottom: '-40px',
+                marginBottom: '0',
                 zIndex: 10
             }} className="container newsletter-section animate-fade-up" >
 
@@ -22,13 +22,13 @@ const Newsletter = () => {
                 <div className="particle" style={{ top: '50%', right: '10%', width: '200px', height: '200px', background: 'var(--color-accent)', borderRadius: '50%', filter: 'blur(60px)', opacity: 0.2 }}></div>
 
 
-                <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
+                <div style={{ width: '100%', textAlign: 'center', position: 'relative', zIndex: 1 }}>
                     <h2 className="newsletter-title" style={{ fontSize: '2.5rem', marginBottom: '16px', color: 'var(--color-text)' }}>Join our Craft Circle</h2>
                     <p className="newsletter-subtitle" style={{ marginBottom: '32px', fontSize: '1.1rem', color: 'var(--color-text-light)' }}>
                         Get updates on new handmade <span className="highlight">treasures</span>, DIY tips, and exclusive offers!
                     </p>
 
-                    <form className="newsletter-form" style={{ display: 'flex', gap: '12px', maxWidth: '480px', margin: '0 auto', flexDirection: 'column' }} onSubmit={(e) => e.preventDefault()}>
+                    <form className="newsletter-form" style={{ display: 'flex', gap: '12px', width: '100%', maxWidth: '500px', margin: '0 auto', flexDirection: 'column' }} onSubmit={(e) => e.preventDefault()}>
                         <div className="newsletter-form-inner" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
                             <input
                                 type="email"
@@ -66,19 +66,19 @@ const Newsletter = () => {
                 }
                 @media (max-width: 768px) {
                     .newsletter-wrapper {
-                        padding: 0 24px;
+                        padding: 0 16px;
                     }
                 }
                 @media (max-width: 480px) {
                     .newsletter-wrapper {
-                        padding: 0 16px;
+                        padding: 0 12px;
                     }
                 }
                 @media (max-width: 768px) {
                     .newsletter-section { 
-                        padding: 40px 20px !important; 
+                        padding: 40px 16px !important; 
                         margin-top: 40px !important;
-                        margin-bottom: -40px !important;
+                        margin-bottom: 0 !important;
                         border-radius: var(--radius-md) !important;
                     }
                     .newsletter-title { font-size: 1.8rem !important; }
@@ -87,8 +87,9 @@ const Newsletter = () => {
                 }
                 @media (max-width: 480px) {
                     .newsletter-section {
-                        padding: 30px 24px !important;
+                        padding: 30px 16px !important;
                         margin-top: 30px !important;
+                        margin-bottom: 0 !important;
                     }
                     .newsletter-form-inner { 
                         flex-direction: column !important; 
@@ -101,6 +102,14 @@ const Newsletter = () => {
                     .newsletter-form button { 
                         width: 100%; 
                     }
+                }
+                @media (max-width: 360px) {
+                    .newsletter-section {
+                        padding: 24px 14px !important;
+                        margin-top: 24px !important;
+                        margin-bottom: 0 !important;
+                    }
+                    .newsletter-title { font-size: 1.5rem !important; }
                 }
             `}</style>
         </div>

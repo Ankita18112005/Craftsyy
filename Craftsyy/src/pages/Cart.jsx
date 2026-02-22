@@ -148,9 +148,11 @@ const Cart = () => {
                             </div>
                         </div>
 
-                        <Button variant="primary" onClick={() => alert('Checkout coming soon!')} style={{ width: '100%', marginTop: '25px', padding: '15px', fontSize: '1.1rem' }}>
-                            Checkout <ShoppingBag size={18} style={{ marginLeft: 8 }} />
-                        </Button>
+                        <Link to="/checkout" style={{ width: '100%', display: 'inline-block' }}>
+                            <Button variant="primary" style={{ width: '100%', marginTop: '25px', padding: '15px', fontSize: '1.1rem' }}>
+                                Checkout <ShoppingBag size={18} style={{ marginLeft: 8 }} />
+                            </Button>
+                        </Link>
 
                         <button onClick={clearCart} style={{
                             width: '100%', marginTop: '10px', padding: '10px',

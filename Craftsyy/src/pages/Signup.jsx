@@ -4,17 +4,24 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import Button from '../components/Button';
 
-const Login = () => {
+const Signup = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const { login } = useAuth();
+    const [errorMsg, setErrorMsg] = useState("");
+    const { signup } = useAuth();
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        login(email, password);
-        navigate('/profile'); // Redirect after login
+        setErrorMsg("");
+        const res = await signup(name, email, password);
+        if (res.success) {
+            navigate('/profile'); // Redirect after signup
+        } else {
+            setErrorMsg(res.error);
+        }
     };
 
     return (
@@ -28,7 +35,7 @@ const Login = () => {
             backgroundSize: '24px 24px',
             padding: '40px 20px'
         }}>
-            <div className="login-card glass" style={{
+            <div className="signup-card glass" style={{
                 padding: '48px 40px 40px',
                 borderRadius: 'var(--radius-lg)',
                 width: '100%',
@@ -39,17 +46,38 @@ const Login = () => {
                 <div style={{
                     position: 'absolute', top: -12, left: '50%',
                     width: '120px', height: '35px', background: 'rgba(255,255,255,0.4)',
-                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)', transform: 'translateX(-50%) rotate(-2deg)'
+                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)', transform: 'translateX(-50%) rotate(2deg)'
                 }}></div>
 
                 <h2 style={{ textAlign: 'center', fontFamily: 'var(--font-heading)', color: 'var(--color-text)', marginBottom: '8px' }}>
-                    Welcome Back! 🎀
+                    Join the Club! ✨
                 </h2>
                 <p style={{ textAlign: 'center', color: 'var(--color-text-light)', marginBottom: '30px' }}>
-                    Sign in to check your order history.
+                    Create an account to track orders &amp; save favorites.
                 </p>
 
+                {errorMsg && <div style={{ color: 'red', textAlign: 'center', marginBottom: '15px' }}>{errorMsg}</div>}
+
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div>
+                        <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text)', fontSize: '0.9rem' }}>Name</label>
+                        <input
+                            type="text"
+                            required
+                            placeholder="Your Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            style={{
+                                width: '100%', padding: '12px 16px', borderRadius: '12px',
+                                border: '2px solid #eee', background: '#f9f9f9',
+                                fontSize: '0.95rem', fontFamily: 'var(--font-body)',
+                                outline: 'none', transition: 'all 0.3s ease',
+                                boxSizing: 'border-box'
+                            }}
+                            onFocus={(e) => { e.target.style.borderColor = 'var(--color-primary)'; e.target.style.background = '#fff'; e.target.style.boxShadow = '0 0 0 4px var(--color-primary-light)'; }}
+                            onBlur={(e) => { e.target.style.borderColor = '#eee'; e.target.style.background = '#f9f9f9'; e.target.style.boxShadow = 'none'; }}
+                        />
+                    </div>
                     <div>
                         <label style={{ display: 'block', marginBottom: '8px', fontWeight: '600', color: 'var(--color-text)', fontSize: '0.9rem' }}>Email</label>
                         <input
@@ -75,7 +103,7 @@ const Login = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 required
-                                placeholder="••••••••"
+                                placeholder="Create a password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 style={{
@@ -105,23 +133,25 @@ const Login = () => {
                     </div>
 
                     <Button type="submit" style={{ width: '100%', marginTop: '10px' }}>
-                        Sign In
+                        Create Account
                     </Button>
                 </form>
 
                 <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
-                    New to Craftsyyy? <Link to="/signup" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>Create Account</Link>
+                    Refer a friend? <span style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>Get 10% off!</span>
+                    <br /><br />
+                    Already have an account? <Link to="/login" style={{ color: 'var(--color-primary)', fontWeight: 'bold' }}>Sign In</Link>
                 </div>
             </div>
 
             <style>{`
                 @media (max-width: 480px) {
-                    .login-card {
+                    .signup-card {
                         padding: 32px 20px 28px !important;
                     }
                 }
                 @media (max-width: 360px) {
-                    .login-card {
+                    .signup-card {
                         padding: 28px 16px 24px !important;
                     }
                 }
@@ -130,4 +160,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
