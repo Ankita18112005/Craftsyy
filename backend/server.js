@@ -151,38 +151,22 @@ app.get('/api/config/whatsapp', (req, res) => {
 });
 
 // ===========================================
-// PRODUCTION ROUTING
+// DEFAULT ROOT ROUTING
 // ===========================================
-if (NODE_ENV === 'production') {
-    const staticPath = path.join(__dirname, '../Craftsyy/dist');
-
-    app.use(express.static(staticPath));
-    console.log(`[SERVE] Static files from: ${staticPath}`);
-
-    // SPA fallback - serve index.html for non-API routes
-    app.use((req, res, next) => {
-        if (!req.path.startsWith('/api')) {
-            res.sendFile(path.join(staticPath, 'index.html'));
-        } else {
-            next();
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Craftsyyy API Server',
+        version: '1.0.0',
+        endpoints: {
+            health: '/api/health',
+            auth: {
+                signup: 'POST /api/auth/signup',
+                login: 'POST /api/auth/login'
+            },
+            config: 'GET /api/config/whatsapp'
         }
     });
-} else {
-    app.get('/', (req, res) => {
-        res.json({
-            message: 'Craftsyyy API Server',
-            version: '1.0.0',
-            endpoints: {
-                health: '/api/health',
-                auth: {
-                    signup: 'POST /api/auth/signup',
-                    login: 'POST /api/auth/login'
-                },
-                config: 'GET /api/config/whatsapp'
-            }
-        });
-    });
-}
+});
 
 // ===========================================
 // ERROR HANDLING
