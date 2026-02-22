@@ -12,11 +12,10 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const USERS_FILE = path.join(__dirname, 'users.json');
 
-// ===========================================
-// MIDDLEWARE
-// ===========================================
 app.use(cors({
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173', 'http://localhost:3000', 'https://craftsyyy.parot.dev'],
+    origin: (origin, callback) => {
+        callback(null, origin || true);
+    },
     credentials: true
 }));
 app.use(express.json());
