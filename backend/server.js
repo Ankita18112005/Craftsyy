@@ -16,7 +16,7 @@ const USERS_FILE = path.join(__dirname, 'users.json');
 // MIDDLEWARE
 // ===========================================
 app.use(cors({
-    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173', 'http://localhost:3000'],
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173', 'http://localhost:3000', 'https://craftsyyy.parot.dev'],
     credentials: true
 }));
 app.use(express.json());
