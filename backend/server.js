@@ -16,7 +16,7 @@ const USERS_FILE = path.join(__dirname, 'users.json');
 // MIDDLEWARE
 // ===========================================
 app.use(cors({
-    origin: NODE_ENV === 'production' ? false : ['http://localhost:5173', 'http://localhost:3000'],
+    origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:5173', 'http://localhost:3000'],
     credentials: true
 }));
 app.use(express.json());
@@ -57,8 +57,8 @@ initDataStore();
 // HEALTH CHECK
 // ===========================================
 app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'ok', 
+    res.json({
+        status: 'ok',
         timestamp: new Date().toISOString(),
         environment: NODE_ENV
     });
@@ -155,7 +155,7 @@ app.get('/api/config/whatsapp', (req, res) => {
 // ===========================================
 if (NODE_ENV === 'production') {
     const staticPath = path.join(__dirname, '../Craftsyy/dist');
-    
+
     app.use(express.static(staticPath));
     console.log(`[SERVE] Static files from: ${staticPath}`);
 
@@ -169,7 +169,7 @@ if (NODE_ENV === 'production') {
     });
 } else {
     app.get('/', (req, res) => {
-        res.json({ 
+        res.json({
             message: 'Craftsyyy API Server',
             version: '1.0.0',
             endpoints: {
@@ -228,4 +228,8 @@ process.on('unhandledRejection', (err) => {
 process.on('uncaughtException', (err) => {
     console.error('[ERROR] Uncaught exception:', err.message);
     process.exit(1);
+});
+
+process.on('exit', (code) => {
+    console.log('[DEBUG] Process is exiting with code:', code);
 });

@@ -4,7 +4,8 @@ const WhatsAppButton = () => {
     const [whatsappConfig, setWhatsappConfig] = useState({ number: '', message: '' });
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/config/whatsapp`)
+        const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
+        fetch(`${API_URL}/api/config/whatsapp`)
             .then(res => res.json())
             .then(data => setWhatsappConfig(data))
             .catch(console.error);
